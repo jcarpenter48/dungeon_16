@@ -1,5 +1,3 @@
-package model;
-
 import javafx.scene.image.ImageView;
 import java.net.URI;
 import java.io.File;
