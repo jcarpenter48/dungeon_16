@@ -1,3 +1,5 @@
+//package dungeon16;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -31,13 +33,16 @@ public class Main extends Application {
     private static Stage stage;
     private static Player player1;
     //private static GameState state;
-    private int WIDTH = 800;
-    private int HEIGHT = 600;
+    private final int WIDTH = 800;
+    private final int HEIGHT = 600;
+
+    //paths setup
+    File srcPathFile = new File(System.getProperty("user.dir"));
+    File relativePathFile = new File(srcPathFile.getParent()+"");
+    URI relativePath = relativePathFile.toURI();     
 
     //click sound and audio setup
-    File relativePathFile = new File(System.getProperty("user.dir"));
-    URI relativePath = relativePathFile.toURI(); 
-    MediaPlayer clickSound = new MediaPlayer(new Media(relativePath+"/click.mp3"));  
+    MediaPlayer clickSound = new MediaPlayer(new Media(relativePath+"/res/sound/click.mp3"));  
     MediaPlayer musicBus;
     //end sound setup
         
@@ -53,7 +58,7 @@ public class Main extends Application {
     
     private void startTitleScreen() throws Exception {
         //titlescreen ambience      
-        MediaPlayer ambient = new MediaPlayer(new Media(relativePath+"/titlescreen_ambient.mp3"));  
+        MediaPlayer ambient = new MediaPlayer(new Media(relativePath+"/res/sound/titlescreen_ambient.mp3"));  
         ambient.setCycleCount(MediaPlayer.INDEFINITE);
         ambient.setAutoPlay(true);  
         
@@ -71,14 +76,13 @@ public class Main extends Application {
         Scene titleScene = new Scene(root, WIDTH, HEIGHT);
         
         // add the background
-        root.setBackground(new Background(createBackground("titlescreen.gif")));
+        root.setBackground(new Background(createBackground(relativePath+"/res/titlescreen/titlescreen.gif")));
         
-        //title and buttons mockup
-        ImageView title = new ImageView("title.gif");
-        //ImageView options = new ImageView("titlemenu.png");
-        ImageView start = new ImageView("title_start.png");
-        ImageView options = new ImageView("title_options.png");
-        ImageView exit = new ImageView("title_exit.png");
+        //title and buttons
+        ImageView title = new ImageView(relativePath+"/res/titlescreen/title.gif");
+        ImageView start = new ImageView(relativePath+"/res/titlescreen/title_start.png");
+        ImageView options = new ImageView(relativePath+"/res/titlescreen/title_options.png");
+        ImageView exit = new ImageView(relativePath+"/res/titlescreen/title_exit.png");
         root.getChildren().add(title);
         root.getChildren().addAll(start, options, exit);
         //buttons debug
@@ -104,14 +108,14 @@ public class Main extends Application {
             });
       
         stage.setScene(titleScene);
-        stage.setTitle("Dungeon 16");
+        stage.setTitle("Dungeon 16 Title Screen");
         stage.setResizable(false);
         stage.show();        
     }
 
     private void startConfigScreen() throws Exception {
         //configscreen music
-        musicBus = new MediaPlayer(new Media(relativePath+"/configscreen_theme.mp3"));  
+        musicBus = new MediaPlayer(new Media(relativePath+"/res/sound/configscreen_theme.mp3"));  
         musicBus.setCycleCount(MediaPlayer.INDEFINITE);
         musicBus.setAutoPlay(true);  
         
@@ -129,14 +133,14 @@ public class Main extends Application {
         Scene configScene = new Scene(configPane, WIDTH, HEIGHT);
         
         // add the background
-        configPane.setBackground(new Background(createBackground("configscreen_background.png")));
+        configPane.setBackground(new Background(createBackground(relativePath+"/res/configscreen/configscreen_background.png")));
         //labels
-        ImageView configLabels = new ImageView("configscreen_labels.png");
+        ImageView configLabels = new ImageView(relativePath+"/res/configscreen/configscreen_labels.png");
         configPane.getChildren().add(configLabels);
         
         //playerPreview
-        ImageView playerPreviewFrame = new ImageView("configscreen_previewframe.png");
-        ImageView playerPreview = new ImageView("preview.gif");
+        ImageView playerPreviewFrame = new ImageView(relativePath+"/res/configscreen/configscreen_previewframe.png");
+        ImageView playerPreview = new ImageView(relativePath+"/res/configscreen/preview_katana.gif");
         //input fields
         VBox inputFields = new VBox(8);
         TextField playerNameChoice = new TextField();
@@ -148,13 +152,35 @@ public class Main extends Application {
         ComboBox<String> weaponChoice = new ComboBox<>();
             weaponChoice.getItems().add("Katana");
             weaponChoice.getItems().add("Broadsword");
-            weaponChoice.getItems().add("Magic");        
+            weaponChoice.getItems().add("Magic"); 
+        //weaponchoice listener
+        weaponChoice.valueProperty().addListener((obs, oldItem, newItem) -> {
+            if(newItem == null) {
+                return;
+            } else {
+                switch (weaponChoice.getValue()) {
+                    case "Katana":
+                        playerPreview.setImage(new Image(relativePath+"/res/players/DPS/preview.gif"));
+                        break;
+                    case "Broadsword":
+                        playerPreview.setImage(new Image(relativePath+"/res/players/Tank/preview.gif"));
+                        break;
+                    case "Magic":
+                        playerPreview.setImage(new Image(relativePath+"/res/players/Mage/preview.gif"));
+                        break;                        
+                    default:
+                        playerPreview.setImage(new Image(relativePath+"/res/players/testsprite.gif"));
+                        break;
+                }   
+            }
+        });
+            
         inputFields.getChildren().addAll(playerNameChoice, difficultyChoice, weaponChoice);
 
         configPane.setRight(inputFields);
         BorderPane.setMargin(inputFields, new Insets(30, 30, 30, 30)); // Set margin for right area.
         //continue button and finalize config screen
-        ImageView continueButton = new ImageView("config_continue.png");
+        ImageView continueButton = new ImageView(relativePath+"/res/configscreen/config_continue.png");
         configPane.getChildren().addAll(playerPreviewFrame, playerPreview, continueButton);
 
         continueButton.setOnMouseClicked(e -> {
@@ -175,6 +201,7 @@ public class Main extends Application {
         });
         
         //set screen to now built config screen
+        stage.setTitle("Dungeon 16 Config Screen");
         stage.setScene(configScene);    
     }
     
