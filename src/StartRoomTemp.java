@@ -61,7 +61,7 @@ public class StartRoomTemp extends Application {
             }
         });
         BorderPane root = new BorderPane();
-        Scene roomScene = new Scene(root, WIDTH, HEIGHT);
+        Scene roomScene = new Scene(root, width, height);
         root.setBackground(new Background(createBackground(relativePath
             + "/res/environments/room1.png")));
         ImageView playerCharacterModel = new ImageView(relativePath + "/res/players/"
