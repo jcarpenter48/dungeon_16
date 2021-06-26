@@ -30,44 +30,44 @@ public class Player {
         playerName = name;
 
         switch (difficultyChoice) {
-            case "Easy":
-                maxHealth = 100;
-                goldCount = 1000;
-                break;
-            case "Medium":
-                maxHealth = 75;
-                goldCount = 750;
-                break;
-            case "Hard":
-                maxHealth = 50;
-                goldCount = 500;
-                break;
-            default:
-                goldCount = 1;
-                maxHealth = 1;
-                break;
+        case "Easy":
+            maxHealth = 100;
+            goldCount = 1000;
+            break;
+        case "Medium":
+            maxHealth = 75;
+            goldCount = 750;
+            break;
+        case "Hard":
+            maxHealth = 50;
+            goldCount = 500;
+            break;
+        default:
+            goldCount = 1;
+            maxHealth = 1;
+            break;
         }
         switch (weaponChoice) {
-            case "Katana":
-                currentWeapon = new Weapon(2, 2);
-                weaponClass = "DPS";
-                sprite = new ImageView(relativePath + "/res/players/DPS/idle.gif");
-                break;
-            case "Broadsword":
-                currentWeapon = new Weapon(1, 3);
-                weaponClass = "Tank";
-                sprite = new ImageView(relativePath + "/res/players/Tank/idle.gif");
-                break;
-            case "Magic":
-                currentWeapon = new Weapon(3, 1);
-                weaponClass = "Mage";
-                sprite = new ImageView(relativePath + "/res/players/Mage/idle.gif");
-                break;
-            default:
-                currentWeapon = new Weapon(1, 1);
-                weaponClass = "DPS";
-                sprite = new ImageView(relativePath + "/res/players/testsprite.gif");
-                break;
+        case "Katana":
+            currentWeapon = new Weapon(2, 2);
+            weaponClass = "DPS";
+            sprite = new ImageView(relativePath + "/res/players/DPS/idle.gif");
+            break;
+        case "Broadsword":
+            currentWeapon = new Weapon(1, 3);
+            weaponClass = "Tank";
+            sprite = new ImageView(relativePath + "/res/players/Tank/idle.gif");
+            break;
+        case "Magic":
+            currentWeapon = new Weapon(3, 1);
+            weaponClass = "Mage";
+            sprite = new ImageView(relativePath + "/res/players/Mage/idle.gif");
+            break;
+        default:
+            currentWeapon = new Weapon(1, 1);
+            weaponClass = "DPS";
+            sprite = new ImageView(relativePath + "/res/players/testsprite.gif");
+            break;
         }
         currentHealth = maxHealth;
         roomCountMultiplier = 0;
@@ -102,7 +102,7 @@ public class Player {
     }
 
     public void switchWeapon(Weapon newWeapon, boolean confirm) {
-        if (confirm == true) {
+        if (confirm) {
             currentWeapon = newWeapon;
         }
     }

@@ -201,18 +201,17 @@ public class Main extends Application {
                 if ((temp == null) || (temp.isEmpty()) || (!(temp.trim().length() > 0))) {
                     errorAlert("Cannot accept NULL or Empty Name!");
                     return;
-                }
+                } //create our player if valid name
                 player1 = new Player(playerNameChoice.getText(), 
                     difficultyChoice.getValue(), weaponChoice.getValue());
                 System.out.println("Saving player data...");
                 src.StartRoomTemp startRoom = new src.StartRoomTemp(player1);
-                musicBus.stop();
+                musicBus.stop(); //halt current music before drawing new room
                 startRoom.start(stage);
             } catch (Exception eex) {
-                System.out.println(eex+"");
                 errorAlert("Cannot accept NULL selections!");
             }
-            //System.out.println("["+e.getX()+", "+e.getY()+"]");
+            //System.out.println("["+e.getX()+", "+e.getY()+"]"); //for getting coords
         });
         
         //set screen to now built config screen

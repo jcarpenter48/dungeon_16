@@ -2,16 +2,12 @@ package src;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.net.URI;
 import java.io.File;
-import java.io.IOException;
 // this is for images and background
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,17 +16,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 //input fields
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
-//event handling
-import javafx.scene.input.MouseEvent;
 //sound library
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 //text color and font
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class StartRoomTemp extends Application {
     private static Stage stage;
@@ -40,8 +31,8 @@ public class StartRoomTemp extends Application {
         playerCharacter = playerPass;
     }
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 600;
+    private final int width = 800;
+    private final int height = 600;
 
     private File srcPathFile = new File(System.getProperty("user.dir"));
     //private File relativePathFile = new File(srcPathFile.getParent() + "");
@@ -58,7 +49,7 @@ public class StartRoomTemp extends Application {
     }
 
     private void startRoomScene() throws Exception {
-        ambient = new MediaPlayer(new Media(relativePath+"/res/sound/tempDungeonTheme.mp3"));
+        ambient = new MediaPlayer(new Media(relativePath + "/res/sound/tempDungeonTheme.mp3"));
         ambient.setCycleCount(MediaPlayer.INDEFINITE);
         ambient.setAutoPlay(true);
 
@@ -73,13 +64,14 @@ public class StartRoomTemp extends Application {
         Scene roomScene = new Scene(root, WIDTH, HEIGHT);
         root.setBackground(new Background(createBackground(relativePath
             + "/res/environments/room1.png")));
-	ImageView playerCharacterModel = new ImageView(relativePath + "/res/players/"
+        ImageView playerCharacterModel = new ImageView(relativePath + "/res/players/"
             + playerCharacter.returnWeaponClass() + "/idle.gif");
-	root.getChildren().add(playerCharacterModel);
+        root.getChildren().add(playerCharacterModel);
         HBox information = new HBox(8);
         VBox spacer = new VBox(10);
         spacer.getChildren().addAll(information);
-        Label goldCount = new Label("Gold Count: " + Integer.toString(playerCharacter.returnGold()));
+        Label goldCount = new Label("Gold Count: "
+            + Integer.toString(playerCharacter.returnGold()));
         goldCount.setTextFill(Color.web("#FFFFFF"));
         information.getChildren().addAll(goldCount);
         root.setBottom(spacer);

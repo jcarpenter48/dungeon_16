@@ -1,11 +1,7 @@
 package src;
 
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
-import org.testfx.matcher.base.NodeMatchers;
-import javafx.application.Application;
 import javafx.stage.Stage;
 import org.testfx.matcher.base.WindowMatchers;
 

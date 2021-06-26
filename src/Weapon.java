@@ -1,6 +1,6 @@
 package src;
 
-public class Weapon{
+public class Weapon {
     private int weaponRange;
     private int baseDamage;
     private String weaponType;
