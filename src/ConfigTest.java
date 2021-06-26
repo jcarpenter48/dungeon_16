@@ -9,7 +9,7 @@ import static org.testfx.api.FxAssert.verifyThat;
 
 public class TitleTest extends ApplicationTest {
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Main dungeon16 = new Main();
         dungeon16.start(primaryStage);
         dungeon16.startConfigScreen();        
@@ -25,9 +25,11 @@ public class TitleTest extends ApplicationTest {
                 try {
                     Application.launch(Main.class); //attempt to run Dungeon16
                     success = true;
-                } catch(Throwable t) {
-                    if(t.getCause() != null && t.getCause().getClass().equals(InterruptedException.class)) {
-                        success = true; //this exception is expected for interrupting, so it is a mark of success
+                } catch (Throwable t) {
+                    if (t.getCause() != null && t.getCause().getClass()
+                        .equals(InterruptedException.class)) {
+                        success = true; //this exception is expected for 
+                        //interrupting, so it is a mark of success
                         return;
                     }
                 }
@@ -37,13 +39,13 @@ public class TitleTest extends ApplicationTest {
         thread.start();
         try {
             Thread.sleep(3000);  //interrupt after 3 seconds
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             //doesn't matter if wake up occurs early
         }
         thread.interrupt();
         try {
             thread.join(1); //wait 1 second for thread to finish
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             //again, doesn't matter if wake up occurs early
         }
         assertTrue(success); //if it made it, success!
