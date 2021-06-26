@@ -112,7 +112,7 @@ public class Main extends Application {
         stage.show();        
     }
 
-    public void startConfigScreen() throws Exception {
+    private void startConfigScreen() throws Exception {
         //configscreen music
         musicBus = new MediaPlayer(new Media(relativePath + "/res/sound/configscreen_theme.mp3"));  
         musicBus.setCycleCount(MediaPlayer.INDEFINITE);
