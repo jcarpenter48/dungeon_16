@@ -1,3 +1,5 @@
+package view;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -22,6 +24,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import model.Player;
+import view.StartRoomTemp;
 
 public class Main extends Application {
     private static Stage stage;
@@ -33,7 +37,7 @@ public class Main extends Application {
     //paths setup
     private File srcPathFile = new File(System.getProperty("user.dir"));
     private File relativePathFile = new File(srcPathFile.getParent() + "");
-    private URI relativePath = relativePathFile.toURI();     
+    private URI relativePath = srcPathFile.toURI();
 
     //click sound and audio setup
     private MediaPlayer clickSound = new MediaPlayer(new Media(
@@ -199,13 +203,17 @@ public class Main extends Application {
                 if ((temp == null) || (temp.isEmpty()) || (!(temp.trim().length() > 0))) {
                     errorAlert("Cannot accept NULL or Empty Name!");
                     return;
-                }
+                } //create our player if valid name
                 player1 = new Player(playerNameChoice.getText(), 
                     difficultyChoice.getValue(), weaponChoice.getValue());
                 System.out.println("Saving player data...");
+                StartRoomTemp startRoom = new StartRoomTemp(player1);
+                musicBus.stop(); //halt current music before drawing new room
+                startRoom.start(stage);
             } catch (Exception eex) {
                 errorAlert("Cannot accept NULL selections!");
             }
+            //System.out.println("["+e.getX()+", "+e.getY()+"]"); //for getting coords
         });
         
         //set screen to now built config screen
