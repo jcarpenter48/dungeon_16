@@ -1,6 +1,4 @@
-package controller;
-
-import view.Main;
+package src;
 
 public class Launcher {
     public static void main(String[] args) {

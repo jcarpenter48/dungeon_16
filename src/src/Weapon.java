@@ -1,4 +1,4 @@
-package model;
+package src;
 
 public class Weapon {
     private int weaponRange;

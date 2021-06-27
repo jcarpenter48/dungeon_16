@@ -1,4 +1,4 @@
-package model;
+package src;
 
 import javafx.scene.image.ImageView;
 import java.net.URI;
