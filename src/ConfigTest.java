@@ -18,6 +18,14 @@ public class ConfigTest extends ApplicationTest {
         dungeon16.start(primaryStage);
         clickOn(893.0, 547.0); //hit start
     }
+
+    @Test
+    public void testEmptyTextField(){
+        moveTo(point("Enter Name..."));
+        clickOn(MouseButton.PRIMARY);
+        moveBy(0, 500);
+    }
+
     /**
      * Test that ensures configuration screen loads correctly.
      **/
