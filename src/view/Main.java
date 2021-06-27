@@ -24,8 +24,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import model.Player;
-import view.StartRoomTemp;
+
+import model.*;
 
 public class Main extends Application {
     private static Stage stage;

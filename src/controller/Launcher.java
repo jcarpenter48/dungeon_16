@@ -3,5 +3,7 @@ package controller;
 import view.Main;
 
 public class Launcher {
-    Main.
+    public static void main(String[] args) {
+        Main.main(args);
+    }
 }

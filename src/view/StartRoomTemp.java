@@ -22,7 +22,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 //text color and font
 import javafx.scene.paint.Color;
-import model.Player;
+
+import model.*;
 
 public class StartRoomTemp extends Application {
     private static Stage stage;
