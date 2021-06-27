@@ -16,7 +16,7 @@ public class ConfigTest extends ApplicationTest {
     public void start(final Stage primaryStage) throws Exception {
         Main dungeon16 = new Main();
         dungeon16.start(primaryStage);
-        dungeon16.startConfigScreen();
+        clickOn(893.0, 547.0); //hit start
     }
     /**
      * Test that ensures configuration screen loads correctly.
