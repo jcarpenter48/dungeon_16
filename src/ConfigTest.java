@@ -2,16 +2,11 @@ package src;
 
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-// Junit
 import org.junit.Test;
-
-// TestFX
 import org.testfx.framework.junit.ApplicationTest;
-
+import org.testfx.matcher.base.WindowMatchers;
 import static org.testfx.api.FxAssert.verifyThat;
 
-// Controller
-import org.testfx.matcher.base.WindowMatchers;
 
 public class ConfigTest extends ApplicationTest {
     @Override

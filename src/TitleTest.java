@@ -1,14 +1,10 @@
-package src;// JavaFX
+package src;
+
 import javafx.stage.Stage;
-// Junit
 import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-// TestFX
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.WindowMatchers;
 import static org.testfx.api.FxAssert.verifyThat;
-
-// Controller
 
 
 public class TitleTest extends ApplicationTest {
