@@ -1,4 +1,4 @@
-package src;
+package view;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,12 +22,13 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 //text color and font
 import javafx.scene.paint.Color;
+import model.Player;
 
 public class StartRoomTemp extends Application {
     private static Stage stage;
     private static Player playerCharacter;
 
-    StartRoomTemp(Player playerPass) {
+    public StartRoomTemp(Player playerPass) {
         playerCharacter = playerPass;
     }
 

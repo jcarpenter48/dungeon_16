@@ -1,4 +1,4 @@
-package src;
+package controller;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,6 +24,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import model.Player;
+import view.StartRoomTemp;
 
 public class Main extends Application {
     private static Stage stage;
@@ -205,7 +207,7 @@ public class Main extends Application {
                 player1 = new Player(playerNameChoice.getText(), 
                     difficultyChoice.getValue(), weaponChoice.getValue());
                 System.out.println("Saving player data...");
-                src.StartRoomTemp startRoom = new src.StartRoomTemp(player1);
+                StartRoomTemp startRoom = new StartRoomTemp(player1);
                 musicBus.stop(); //halt current music before drawing new room
                 startRoom.start(stage);
             } catch (Exception eex) {

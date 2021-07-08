@@ -1,16 +1,16 @@
-package src;
-
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+
+import controller.Main;
+import model.Player;
 import org.testfx.framework.junit.ApplicationTest;
 import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.Test;
+
 public class PlayerTest extends ApplicationTest {
 
     @Override
