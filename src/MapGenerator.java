@@ -8,33 +8,33 @@ public class MapGenerator {
         int roomWidth = (int) (Math.random() * 6 + 10);
         int roomHeight = (int) (Math.random() * 6 + 10);
         roomMap = (Room[][]) new Object[roomHeight][roomWidth];
-        start = roomMap[1][(int)(Math.random() * (roomWidth - 2)) + 1];
-        end = roomMap[9][(int)(Math.random() * (roomWidth - 2)) + 1];
-        currentRoom = start;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < roomHeight; i++) {
+            for (int j = 0; j < roomWidth; j++) {
                 roomMap[i][j] = new Room();
             }
         }
+        start = roomMap[1][(int)(Math.random() * (roomWidth - 2)) + 1];
+        end = roomMap[9][(int)(Math.random() * (roomWidth - 2)) + 1];
+        currentRoom = start;
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
-                if (i - 1 > 0) {
+                if (i - 1 >= 0) {
                     roomMap[i][j].setUp(roomMap[i - 1][j]);
                 }
-                if (i + 1 > 0) {
-                    roomMap[i][j].setDown(roomMap[i - 1][j]);
+                if (i + 1 < roomHeight) {
+                    roomMap[i][j].setDown(roomMap[i + 1][j]);
                 }
-                if (j - 1 > 0) {
-                    roomMap[i][j].setLeft(roomMap[i - 1][j]);
+                if (j - 1 >= 0) {
+                    roomMap[i][j].setLeft(roomMap[i][j - 1]);
                 }
-                if (j + 1 > 0) {
-                    roomMap[i][j].setRight(roomMap[i - 1][j]);
+                if (j + 1 < roomWidth) {
+                    roomMap[i][j].setRight(roomMap[i][j + 1]);
                 }
             }
         }
     }
-    public void gameStart(Player playerChar) {
+    public Room gameStart() {
         //initial player coordinates
-        playerChar.setCoords(roomHeight / 2, roomWidth / 2);
+        return current;
     }
 }
