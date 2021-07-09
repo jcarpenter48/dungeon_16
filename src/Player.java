@@ -13,6 +13,8 @@ public class Player {
     private double roomCountMultiplier;
     private ImageView sprite;
     private Weapon currentWeapon;
+    private int x;
+    private int y;
 
     private File srcPathFile = new File(System.getProperty("user.dir"));
     private File relativePathFile = new File(srcPathFile.getParent() + "");
@@ -131,5 +133,27 @@ public class Player {
     }    
     public ImageView returnSprite() {
         return sprite;
-    }      
+    }
+    public void setCoords(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    public void moveUp() {
+        y++;
+    }
+    public void moveDown() {
+        y--;
+    }
+    public void moveLeft() {
+        x--;
+    }
+    public void moveRight() {
+        x++;
+    }
+    public int getXCoord() {
+        return x;
+    }
+    public int getYCoord() {
+        return y;
+    }
 }

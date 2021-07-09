@@ -205,9 +205,9 @@ public class Main extends Application {
                 player1 = new Player(playerNameChoice.getText(), 
                     difficultyChoice.getValue(), weaponChoice.getValue());
                 System.out.println("Saving player data...");
-                src.StartRoomTemp startRoom = new src.StartRoomTemp(player1);
+                src.MapController newDungeon = new src.MapController(player1);
                 musicBus.stop(); //halt current music before drawing new room
-                startRoom.start(stage);
+                newDungeon.start(stage);
             } catch (Exception eex) {
                 errorAlert("Cannot accept NULL selections!");
             }
