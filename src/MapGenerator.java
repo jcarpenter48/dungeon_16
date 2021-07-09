@@ -19,28 +19,28 @@ public class MapGenerator {
         //you must set room adjacents in udlr order!
         for (int i = 0; i < roomHeight - 1; i++) {
             for (int j = 0; j < roomWidth - 1; j++) {
-                if (i - 1 > 0) {
+                if (i - 1 >= 0) {
                     try {
                         roomMap[i][j].setUp(roomMap[i - 1][j]);
                     } catch (NullPointerException npe) {
                         roomMap[i][j].setUp(null);
                     }
                 }
-                if (i + 1 > 0) {
+                if (i + 1 < roomHeight) {
                     try {
                         roomMap[i][j].setDown(roomMap[i + 1][j]);
                     } catch (NullPointerException npe) {
                         roomMap[i][j].setDown(null);
                     }
                 }
-                if (j - 1 > 0) {
+                if (j - 1 >= 0) {
                     try {
                         roomMap[i][j].setLeft(roomMap[i][j - 1]);
                     } catch (NullPointerException npe) {
                         roomMap[i][j].setLeft(null);
                     }
                 }
-                if (j + 1 > 0) {
+                if (j + 1 < roomWidth) {
                     try {
                         roomMap[i][j].setRight(roomMap[i][j + 1]);
                     } catch (NullPointerException npe) {
