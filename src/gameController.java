@@ -8,27 +8,37 @@ public gameController {
     }
     //player movement
     //check valid with roomtile
-    private void checkNextRoom() {
+    //for player movement: on keystroke input, call the move functions, if false is returned call corresponding checknextroom functions
+    public void checkNextRoomUp() {
         if (playerChar.getYCoord() == 0 && player.getXCoord() == 5) {
             if (current.retRoomTiles(0, 5).getEntityType() == "Door") {
                 current = current.retUp();
                 playerChar.setCoords(8, 5);
             }
         }
-        else if (playerChar.getYCoord() == 8 && player.getXCoord() == 5) {
+    }
+    public void checkNextRoomDown() {
+        if (playerChar.getYCoord() == 8 && player.getXCoord() == 5) {
             if (current.retRoomTiles(8, 5).getEntityType() == "Door") {
                 current = current.retDown();
                 playerChar.setCoords(0, 5);
             }
         }
-        else if (playerChar.getYCoord() == 5 && player.getXCoord() == 0) {
-            if (current.retRoomTiles(8, 5).getEntityType() == "Door") {
+    }
+    public void checkNextRoomLeft() {
+        if (playerChar.getYCoord() == 5 && player.getXCoord() == 0) {
+            if (current.retRoomTiles(5, 0).getEntityType() == "Door") {
                 current = current.retLeft();
                 playerChar.setCoords(5, 8);
+            }
         }
-        else if (playerChar.getYCoord() == 5 && player.getXCoord() == 8) {
-            current = current.retRight();
-            playerChar.setCoords(5, 0);
+    }
+    public void checkNextRoomRight() {
+        if (playerChar.getYCoord() == 5 && player.getXCoord() == 8) {
+            if (current.retRoomTiles(5, 8).getEntityType() == "Door") {
+                current = current.retRight();
+                playerChar.setCoords(5, 0);
+            }
         }
     }
     public boolean moveUp() {
@@ -36,7 +46,7 @@ public gameController {
             return false;
         } else {
             playerChar.setYCoord(playerChar.getYCoord() - 1);
-            checkNextRoom();
+            //checkNextRoom();
             return true;
         }
     }
@@ -45,7 +55,7 @@ public gameController {
             return false;
         } else {
             playerChar.setYCoord(playerChar.getYCoord() + 1);
-            checkNextRoom();
+            //checkNextRoom();
             return true;
         }
     }
@@ -54,7 +64,7 @@ public gameController {
             return false;
         } else {
             playerChar.setXCoord(playerChar.getXCoord() - 1);
-            checkNextRoom();
+            //checkNextRoom();
             return true;
         }
     }
@@ -63,7 +73,7 @@ public gameController {
             return false;
         } else {
             playerChar.setXCoord(playerChar.getXCoord() + 1);
-            checkNextRoom();
+            //checkNextRoom();
             return true;
         }
     }
