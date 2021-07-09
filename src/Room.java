@@ -13,8 +13,8 @@ public class Room {
             }
         }
     }
-    public RoomTile retRoomTile(int x, int y) {
-        return tiles[x][y];
+    public RoomTile retRoomTile(int y, int x) {
+        return tiles[y][x];
     }
     public void setLeft(Room x) {
         left = x;
