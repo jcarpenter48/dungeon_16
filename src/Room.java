@@ -12,22 +12,33 @@ public class Room {
                 tiles[i][j] = new RoomTile(null);
             }
         }
-        tiles[0][5] = new RoomTile("DoorUp");
-        tiles[5][0] = new RoomTile("DoorLeft");
-        tiles[5][8] = new RoomTile("DoorRight");
-        tiles[8][5] = new RoomTile("DoorDown");
+    }
+    public RoomTile retRoomTile(int x, int y) {
+        return tiles[x][y];
     }
     public void setLeft(Room x) {
         left = x;
+        if (x != null) {
+            tiles[5][0] = new RoomTile("DoorLeft");
+        }
     }
     public void setRight(Room x) {
         right = x;
+        if (x != null) {
+            tiles[5][8] = new RoomTile("DoorRight");
+        }
     }
     public void setUp(Room x) {
         up = x;
+        if (x != null) {
+            tiles[0][5] = new RoomTile("DoorUp");
+        }
     }
     public void setDown(Room x) {
         down = x;
+        if (x != null) {
+            tiles[8][5] = new RoomTile("DoorDown");
+        }
     }
     public Room retUp() {
         return this.up;
