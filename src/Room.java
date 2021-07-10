@@ -32,10 +32,6 @@ public class Room {
                 tiles[i][j] = new RoomTile(null);
             }
         }
-        tiles[0][5] = new RoomTile("DoorUp");
-        tiles[5][0] = new RoomTile("DoorLeft");
-        tiles[5][8] = new RoomTile("DoorRight");
-        tiles[8][5] = new RoomTile("DoorDown");
     }
     public RoomTile retRoomTiles(int x, int y) {
         return tiles[x][y];
@@ -47,23 +43,27 @@ public class Room {
         up = x;
         if (up != null) {
             roomVariant = roomVariant + "u";
+            tiles[0][5] = new RoomTile("DoorUp");
         }
     }
     public void setDown(Room x) {
         down = x;
         if (down != null) {
+            tiles[8][5] = new RoomTile("DoorDown");
             roomVariant = roomVariant + "d";
         }
     }
     public void setLeft(Room x) {
         left = x;
         if (left != null) {
+            tiles[5][0] = new RoomTile("DoorLeft");
             roomVariant = roomVariant + "l";
         }
     }
     public void setRight(Room x) {
         right = x;
         if (right != null) {
+            tiles[5][8] = new RoomTile("DoorRight");
             roomVariant = roomVariant + "r";
         }
     }
