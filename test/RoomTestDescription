@@ -1,0 +1,2 @@
+Room test instantiates a room object and tests to see if doors are generated on room tile coordinates correctly when surrounding rooms are instantiated.
+RoomTest checks to ensure that the player can traverse through rooms when each room is called by the game controller.
