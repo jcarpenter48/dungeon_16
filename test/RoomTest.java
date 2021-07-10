@@ -97,7 +97,7 @@ public class RoomTest extends ApplicationTest {
         assertEquals(dummyRoom2, testRoom.retDown()); 
         assertEquals(dummyRoom4, testRoom.retLeft());        
         assertEquals(dummyRoom1, testRoom.retRight());
-        assertEquals(false, testRoom.isExit());;          
+        assertEquals(false, testRoom.isExit());
         assertEquals("room_start", testRoom.retRoomVariant());
     }
 }
