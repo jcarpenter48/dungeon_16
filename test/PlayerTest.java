@@ -33,5 +33,7 @@ public class PlayerTest extends ApplicationTest {
         assertEquals(2, playerCharacter.dealDamage(), 0.01);
         assertEquals(5, playerCharacter.getXCoord(), 0);
         assertEquals(5, playerCharacter.getYCoord(), 0);
+        playerCharacter.moveRight();
+        assertEquals(6, playerCharacter.getXCoord(), 0);
     }
 }
