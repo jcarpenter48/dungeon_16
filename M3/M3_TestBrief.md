@@ -1,9 +1,9 @@
 # M3 Testing Brief
 PlayerTest initializes a player object to test the Player class which is a core class for the dungeon game.
 The PlayerTest checks to ensure that on construction, player hp, current hp, and weapons are clearly and accurately instantiated and
-that player coordinates can be acccurately controlled within a room's 2D array of RoomTiles.
-    @Test setCoordinates() - Test written to ensure player coordinate alteration methods responsible for placing character in world function correctly. Key to ensuring correct player movement.
-    @Test returnData2() - Test written to new player creation, coordinate alteration, damage attribute, and movement coordinate change are correct. This verifies methods do not conflict or break when used in sequence.
+that player coordinates can be acccurately controlled within a room's 2D array of RoomTiles.\
+    @Test setCoordinates() - Test written to ensure player coordinate alteration methods responsible for placing character in world function correctly. Key to ensuring correct player movement.\
+    @Test returnData2() - Test written to new player creation, coordinate alteration, damage attribute, and movement coordinate change are correct. This verifies methods do not conflict or break when used in sequence.\
 
 RoomTest instantiates a room object and tests to see if doors are generated on room tile coordinates correctly when surrounding rooms are instantiated.
 RoomTest checks to ensure that the player can traverse through rooms when each room is called by the game controller.
