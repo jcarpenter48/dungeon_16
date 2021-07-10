@@ -72,8 +72,7 @@ public class MapController extends Application {
 
         root.setBackground(new Background(currentRoom.createBackground()));
 
-        ImageView playerCharacterModel = new ImageView(relativePath + "/res/players/"
-            + playerCharacter.returnWeaponClass() + "/idle.gif");
+        ImageView playerCharacterModel = new ImageView(playerCharacter.returnSprite());
         root.getChildren().add(playerCharacterModel);
         playerCharacterModel.setX(305);
         playerCharacterModel.setY(160);
@@ -89,6 +88,8 @@ public class MapController extends Application {
         root.setBottom(spacer);
         //event handler for game input
         roomScene.setOnKeyPressed(e -> {
+            playerCharacter.setSprite("Move");
+            playerCharacterModel.setImage(playerCharacter.returnSprite());
             switch (e.getCode()) {
             case W:
                 //System.out.println("W key was pressed");
@@ -160,7 +161,9 @@ public class MapController extends Application {
             }
         });
         roomScene.setOnKeyReleased(e -> {
-            System.out.println("Keys released");        
+            System.out.println("Keys released");
+            playerCharacter.setSprite("Idle");
+            playerCharacterModel.setImage(playerCharacter.returnSprite());            
         });
         stage.setScene(roomScene);
         stage.setTitle("Dungeon 16");
