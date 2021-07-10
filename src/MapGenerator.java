@@ -26,7 +26,7 @@ public class MapGenerator {
                         roomMap[i][j].setUp(null);
                     }
                 }
-                if (i + 1 < roomHeight) {
+                if (i + 1 < roomHeight - 1) {
                     try {
                         roomMap[i][j].setDown(roomMap[i + 1][j]);
                     } catch (NullPointerException npe) {
@@ -40,7 +40,7 @@ public class MapGenerator {
                         roomMap[i][j].setLeft(null);
                     }
                 }
-                if (j + 1 < roomWidth) {
+                if (j + 1 < roomWidth - 1) {
                     try {
                         roomMap[i][j].setRight(roomMap[i][j + 1]);
                     } catch (NullPointerException npe) {
@@ -50,7 +50,14 @@ public class MapGenerator {
             }
         }
         start = roomMap[1][(int)(Math.random() * (roomWidth - 2)) + 1];
-        end = roomMap[9][(int)(Math.random() * (roomWidth - 2)) + 1];
+        end = roomMap[8][(int)(Math.random() * (roomWidth - 2)) + 1];
+        start.setRoomVariant("room_start");
+        end.setRoomVariant("room_exit");
+        end.setUp(null);
+        end.setDown(null);
+        end.setLeft(null);
+        end.setRight(null);
+        end.setExit();
     }
     public Room getStart() {
         return start;

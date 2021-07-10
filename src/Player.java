@@ -130,7 +130,10 @@ public class Player {
     }
     public String returnWeaponClass() {
         return weaponClass;
-    }    
+    }
+    public void setSprite(String animation) {
+        sprite = new ImageView(relativePath + "/res/players/" + animation + ".gif");
+    }
     public ImageView returnSprite() {
         return sprite;
     }
@@ -138,6 +141,12 @@ public class Player {
         this.x = x;
         this.y = y;
     }
+    public void setXCoord(int x) {
+        this.x = x;
+    }
+    public void setYCoord(int y) {
+        this.y = y;
+    }    
     public void moveUp() {
         y++;
     }

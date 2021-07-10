@@ -15,6 +15,7 @@ public class Room {
     private Room up;
     private Room down;
     private RoomTile[][] tiles;
+    private boolean isRoomExit = false;
     
     private String RoomVariant = "room_"; //you must set room adjacents in udlr order!
     
@@ -35,6 +36,12 @@ public class Room {
         tiles[5][0] = new RoomTile("DoorLeft");
         tiles[5][8] = new RoomTile("DoorRight");
         tiles[8][5] = new RoomTile("DoorDown");
+    }
+    public RoomTile retRoomTiles(int x, int y) {
+        return tiles[x][y];
+    }
+    public void setRoomVariant(String newVariant) {
+        this.RoomVariant = newVariant;
     }
     public void setUp(Room x) {
         up = x;
@@ -60,6 +67,9 @@ public class Room {
             RoomVariant = RoomVariant + "r";
         }
     }
+    public void setExit() {
+        isRoomExit = true;
+    }
 
     public Room retUp() {
         return this.up;
@@ -72,6 +82,9 @@ public class Room {
     }
     public Room retRight() {
         return this.right;
+    }
+    public boolean isExit() {
+        return isRoomExit;
     }
     
     public BackgroundImage createBackground() {

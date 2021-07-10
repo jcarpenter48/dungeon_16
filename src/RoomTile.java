@@ -38,7 +38,7 @@ public class RoomTile {
              return;
         }
     }
-    public void clearTile () {
+    public void clearTile() {
         entityType = null;
         //chest = null;
         //enemy = null;
@@ -51,4 +51,7 @@ public class RoomTile {
             return false;
         }
     }
+    public String getEntityType() {
+        return entityType;
+    }    
 }
