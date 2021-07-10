@@ -148,16 +148,16 @@ public class Player {
         this.y = y;
     }    
     public void moveUp() {
-        y++;
+        y += 5;
     }
     public void moveDown() {
-        y--;
+        y -= 5;
     }
     public void moveLeft() {
-        x--;
+        x -= 5;
     }
     public void moveRight() {
-        x++;
+        x += 5;
     }
     public int getXCoord() {
         return x;

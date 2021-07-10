@@ -18,7 +18,7 @@ public class ConfigTest extends ApplicationTest {
     }
 
     @Test
-    public void testEmptyTextField(){
+    public void testEmptyTextField() {
         moveTo(point("Enter Name..."));
         clickOn(MouseButton.PRIMARY);
         moveBy(0, 500);

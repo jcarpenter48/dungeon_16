@@ -4,9 +4,9 @@ import java.net.URI;
 import java.io.File;
 // this is for images and background
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.ImageView;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Background;
+//import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 
 public class Room {
@@ -17,12 +17,12 @@ public class Room {
     private RoomTile[][] tiles;
     private boolean isRoomExit = false;
     
-    private String RoomVariant = "room_"; //you must set room adjacents in udlr order!
+    private String roomVariant = "room_"; //you must set room adjacents in udlr order!
     
     private File srcPathFile = new File(System.getProperty("user.dir"));
     //private File relativePathFile = new File(srcPathFile.getParent() + "");
     private URI relativePath = srcPathFile.toURI();
-    private String RoomBackground = (relativePath
+    private String roomBackground = (relativePath
             + "/res/environments/");
 
     public Room() {
@@ -41,34 +41,34 @@ public class Room {
         return tiles[x][y];
     }
     public void setRoomVariant(String newVariant) {
-        this.RoomVariant = newVariant;
+        this.roomVariant = newVariant;
     }
     public void setUp(Room x) {
         up = x;
         if (up != null) {
-            RoomVariant = RoomVariant + "u";
+            roomVariant = roomVariant + "u";
         }
     }
     public void setDown(Room x) {
         down = x;
         if (down != null) {
-            RoomVariant = RoomVariant + "d";
+            roomVariant = roomVariant + "d";
         }
     }
     public void setLeft(Room x) {
         left = x;
         if (left != null) {
-            RoomVariant = RoomVariant + "l";
+            roomVariant = roomVariant + "l";
         }
     }
     public void setRight(Room x) {
         right = x;
         if (right != null) {
-            RoomVariant = RoomVariant + "r";
+            roomVariant = roomVariant + "r";
         }
     }
-    public void setExit() {
-        isRoomExit = true;
+    public void setExit(boolean isSet) {
+        isRoomExit = isSet;
     }
 
     public Room retUp() {
@@ -83,14 +83,17 @@ public class Room {
     public Room retRight() {
         return this.right;
     }
+    public String retRoomVariant() {
+        return roomVariant;
+    }
     public boolean isExit() {
         return isRoomExit;
     }
     
     public BackgroundImage createBackground() {
-        System.out.println("Background Name: " + RoomBackground + RoomVariant + ".png");
+        System.out.println("Background Name: " + roomBackground + roomVariant + ".png");
         try {
-            Image backgroundImage = new Image(RoomBackground + RoomVariant + ".png");
+            Image backgroundImage = new Image(roomBackground + roomVariant + ".png");
             BackgroundImage fullBackground = new BackgroundImage(backgroundImage,
                         null, null, BackgroundPosition.CENTER, null);
             return fullBackground;

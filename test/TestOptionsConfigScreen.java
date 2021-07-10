@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.KeyCode;
 import org.testfx.matcher.base.WindowMatchers;
-import org.testfx.robot.Motion;
+//import org.testfx.robot.Motion;
 
 import static org.testfx.api.FxAssert.verifyThat;
 

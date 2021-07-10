@@ -16,8 +16,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 //input fields
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.KeyCode;
+//import javafx.scene.input.KeyEvent;
+//import javafx.scene.input.KeyCode;
 //sound library
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -90,67 +90,73 @@ public class MapController extends Application {
         //event handler for game input
         roomScene.setOnKeyPressed(e -> {
             switch (e.getCode()) {
-                case W:
-                    //System.out.println("W key was pressed");
-                    playerCharacterModel.setY(playerCharacterModel.getY() - 5);
-                    System.out.println("X: " + playerCharacterModel.getX() + " Y: " + playerCharacterModel.getY());
-                    playerCharacter.setXCoord((int)playerCharacterModel.getX());
-                    playerCharacter.setYCoord((int)playerCharacterModel.getY());
-                    //check if we move to next room or if we hit the game exit
-                    if (GameController.checkExit(playerCharacter, currentRoom)) {
-                        try {
-                            startEndScreen();
-                        } catch (Exception eex) {
-                            System.out.println("Failed to initialize win screen");
-                            System.out.println("Exception: " + eex);
-                        }
-                        break;
+            case W:
+                //System.out.println("W key was pressed");
+                playerCharacterModel.setY(playerCharacterModel.getY() - 5);
+                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                    + playerCharacterModel.getY());
+                playerCharacter.setXCoord((int) playerCharacterModel.getX());
+                playerCharacter.setYCoord((int) playerCharacterModel.getY());
+                //check if we move to next room or if we hit the game exit
+                if (GameController.checkExit(playerCharacter, currentRoom)) {
+                    try {
+                        startEndScreen();
+                    } catch (Exception eex) {
+                        System.out.println("Failed to initialize win screen");
+                        System.out.println("Exception: " + eex);
                     }
-                    currentRoom = GameController.checkNextRoomUp(playerCharacter, currentRoom);
-                    root.setBackground(new Background(currentRoom.createBackground()));
-                    playerCharacterModel.setX(playerCharacter.getXCoord());
-                    playerCharacterModel.setY(playerCharacter.getYCoord());
-                    System.out.println(currentRoom.toString());
                     break;
-                case S:
-                    //System.out.println("S key was pressed"); 
-                    playerCharacterModel.setY(playerCharacterModel.getY() + 5);
-                    System.out.println("X: " + playerCharacterModel.getX() + " Y: " + playerCharacterModel.getY());
-                    playerCharacter.setXCoord((int)playerCharacterModel.getX());
-                    playerCharacter.setYCoord((int)playerCharacterModel.getY());
-                    //check if we move to next room
-                    currentRoom = GameController.checkNextRoomDown(playerCharacter, currentRoom);
-                    root.setBackground(new Background(currentRoom.createBackground()));
-                    playerCharacterModel.setX(playerCharacter.getXCoord());
-                    playerCharacterModel.setY(playerCharacter.getYCoord()); 
-                    System.out.println(currentRoom.toString());
-                    break;
-                case A:
-                    //System.out.println("A key was pressed");
-                    playerCharacterModel.setX(playerCharacterModel.getX() - 5);
-                    System.out.println("X: " + playerCharacterModel.getX() + " Y: " + playerCharacterModel.getY());
-                    playerCharacter.setXCoord((int)playerCharacterModel.getX());
-                    playerCharacter.setYCoord((int)playerCharacterModel.getY());
-                    //check if we move to next room
-                    currentRoom = GameController.checkNextRoomLeft(playerCharacter, currentRoom);
-                    root.setBackground(new Background(currentRoom.createBackground()));
-                    playerCharacterModel.setX(playerCharacter.getXCoord());
-                    playerCharacterModel.setY(playerCharacter.getYCoord());
-                    System.out.println(currentRoom.toString());
-                    break;
-                case D:
-                    //System.out.println("D key was pressed");
-                    playerCharacterModel.setX(playerCharacterModel.getX() + 5);
-                    System.out.println("X: " + playerCharacterModel.getX() + " Y: " + playerCharacterModel.getY());
-                    playerCharacter.setXCoord((int)playerCharacterModel.getX());
-                    playerCharacter.setYCoord((int)playerCharacterModel.getY());
-                    //check if we move to next room
-                    currentRoom = GameController.checkNextRoomRight(playerCharacter, currentRoom);
-                    root.setBackground(new Background(currentRoom.createBackground()));
-                    playerCharacterModel.setX(playerCharacter.getXCoord());
-                    playerCharacterModel.setY(playerCharacter.getYCoord()); 
-                    System.out.println(currentRoom.toString());
-                    break;
+                }
+                currentRoom = GameController.checkNextRoomUp(playerCharacter, currentRoom);
+                root.setBackground(new Background(currentRoom.createBackground()));
+                playerCharacterModel.setX(playerCharacter.getXCoord());
+                playerCharacterModel.setY(playerCharacter.getYCoord());
+                System.out.println(currentRoom.toString());
+                break;
+            case S:
+                //System.out.println("S key was pressed"); 
+                playerCharacterModel.setY(playerCharacterModel.getY() + 5);
+                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                    + playerCharacterModel.getY());
+                playerCharacter.setXCoord((int) playerCharacterModel.getX());
+                playerCharacter.setYCoord((int) playerCharacterModel.getY());
+                //check if we move to next room
+                currentRoom = GameController.checkNextRoomDown(playerCharacter, currentRoom);
+                root.setBackground(new Background(currentRoom.createBackground()));
+                playerCharacterModel.setX(playerCharacter.getXCoord());
+                playerCharacterModel.setY(playerCharacter.getYCoord()); 
+                System.out.println(currentRoom.toString());
+                break;
+            case A:
+                //System.out.println("A key was pressed");
+                playerCharacterModel.setX(playerCharacterModel.getX() - 5);
+                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                    + playerCharacterModel.getY());
+                playerCharacter.setXCoord((int) playerCharacterModel.getX());
+                playerCharacter.setYCoord((int) playerCharacterModel.getY());
+                //check if we move to next room
+                currentRoom = GameController.checkNextRoomLeft(playerCharacter, currentRoom);
+                root.setBackground(new Background(currentRoom.createBackground()));
+                playerCharacterModel.setX(playerCharacter.getXCoord());
+                playerCharacterModel.setY(playerCharacter.getYCoord());
+                System.out.println(currentRoom.toString());
+                break;
+            case D:
+                //System.out.println("D key was pressed");
+                playerCharacterModel.setX(playerCharacterModel.getX() + 5);
+                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                    + playerCharacterModel.getY());
+                playerCharacter.setXCoord((int) playerCharacterModel.getX());
+                playerCharacter.setYCoord((int) playerCharacterModel.getY());
+                //check if we move to next room
+                currentRoom = GameController.checkNextRoomRight(playerCharacter, currentRoom);
+                root.setBackground(new Background(currentRoom.createBackground()));
+                playerCharacterModel.setX(playerCharacter.getXCoord());
+                playerCharacterModel.setY(playerCharacter.getYCoord()); 
+                System.out.println(currentRoom.toString());
+                break;
+            default:
+                break;
             }
         });
         roomScene.setOnKeyReleased(e -> {
@@ -164,7 +170,8 @@ public class MapController extends Application {
 
     private void startEndScreen() throws Exception {
         //victory music
-        musicBus = new MediaPlayer(new Media(relativePath + "/res/sound/victoryscreen_theme.mp3"));  
+        musicBus = new MediaPlayer(new Media(relativePath
+            + "/res/sound/victoryscreen_theme.mp3"));  
         musicBus.setCycleCount(MediaPlayer.INDEFINITE);
         musicBus.setAutoPlay(true);  
         

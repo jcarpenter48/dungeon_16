@@ -10,9 +10,11 @@ public class GameController {
     }
     //player movement
     //check valid with roomtile
-    //for player movement: on keystroke input, call the move functions, if false is returned call corresponding checknextroom functions
+    //for player movement: on keystroke input, call the move functions, if false is returned call 
+    //corresponding checknextroom functions
     public static boolean checkExit(Player playerChar, Room current) {
-        if (playerChar.getYCoord() < -30 && (playerChar.getXCoord() > 285 && playerChar.getXCoord() < 320)) {
+        if (playerChar.getYCoord() < -30 && (playerChar.getXCoord() > 285
+            && playerChar.getXCoord() < 320)) {
             if (current.isExit()) {
                 System.out.println(current.isExit() + "");
                 return true;
@@ -22,7 +24,8 @@ public class GameController {
         return false;
     }
     public static Room checkNextRoomUp(Player playerChar, Room current) {
-        if (playerChar.getYCoord() < -30 && (playerChar.getXCoord() > 285 && playerChar.getXCoord() < 320)) {
+        if (playerChar.getYCoord() < -30 && (playerChar.getXCoord() > 285
+            && playerChar.getXCoord() < 320)) {
             if ((current.retUp()) != null) {
                 current = current.retUp();
                 playerChar.setCoords(295, 380);
@@ -31,7 +34,8 @@ public class GameController {
         return current;
     }
     public static Room checkNextRoomDown(Player playerChar, Room current) {
-        if (playerChar.getYCoord() > 400 && (playerChar.getXCoord() > 270 && playerChar.getXCoord() < 345)) {
+        if (playerChar.getYCoord() > 400 && (playerChar.getXCoord() > 270
+            && playerChar.getXCoord() < 345)) {
             if ((current.retDown()) != null) {
                 current = current.retDown();
                 playerChar.setCoords(295, -20);
@@ -40,7 +44,8 @@ public class GameController {
         return current;
     }
     public static Room checkNextRoomLeft(Player playerChar, Room current) {
-        if (playerChar.getXCoord() < -25 && (playerChar.getYCoord() > 115 && playerChar.getYCoord() < 175)) {
+        if (playerChar.getXCoord() < -25 && (playerChar.getYCoord() > 115 
+            && playerChar.getYCoord() < 175)) {
             if ((current.retLeft()) != null) {
                 current = current.retLeft();
                 playerChar.setCoords(610, 160);
@@ -49,7 +54,8 @@ public class GameController {
         return current;
     }
     public static Room checkNextRoomRight(Player playerChar, Room current) {
-        if (playerChar.getXCoord() > 630 && (playerChar.getYCoord() > 115 && playerChar.getYCoord() < 175)) {
+        if (playerChar.getXCoord() > 630 && (playerChar.getYCoord() > 115
+            && playerChar.getYCoord() < 175)) {
             if ((current.retRight()) != null) {
                 current = current.retRight();
                 playerChar.setCoords(-20, 160);
@@ -58,7 +64,8 @@ public class GameController {
         return current;
     }
     public boolean moveUp() {
-        if (playerChar.getYCoord() == 0 || current.retRoomTiles(playerChar.getXCoord(), playerChar.getYCoord() - 1).entityLocated()) {
+        if (playerChar.getYCoord() == 0 || current.retRoomTiles(playerChar.getXCoord(),
+            playerChar.getYCoord() - 1).entityLocated()) {
             return false;
         } else {
             playerChar.setYCoord(playerChar.getYCoord() - 1);
@@ -67,7 +74,8 @@ public class GameController {
         }
     }
     public boolean moveDown() {
-        if (playerChar.getYCoord() == 8 || current.retRoomTiles(playerChar.getXCoord(), playerChar.getYCoord() + 1).entityLocated()) {
+        if (playerChar.getYCoord() == 8 || current.retRoomTiles(playerChar.getXCoord(),
+            playerChar.getYCoord() + 1).entityLocated()) {
             return false;
         } else {
             playerChar.setYCoord(playerChar.getYCoord() + 1);
@@ -76,7 +84,8 @@ public class GameController {
         }
     }
     public boolean moveLeft() {
-        if (playerChar.getXCoord() == 0 || current.retRoomTiles(playerChar.getXCoord() - 1, playerChar.getYCoord()).entityLocated()) {
+        if (playerChar.getXCoord() == 0 || current.retRoomTiles(playerChar.getXCoord() - 1,
+            playerChar.getYCoord()).entityLocated()) {
             return false;
         } else {
             playerChar.setXCoord(playerChar.getXCoord() - 1);
@@ -85,7 +94,8 @@ public class GameController {
         }
     }
     public boolean moveRight() {
-        if (playerChar.getXCoord() == 8 || current.retRoomTiles(playerChar.getXCoord() + 1, playerChar.getYCoord()).entityLocated()) {
+        if (playerChar.getXCoord() == 8 || current.retRoomTiles(playerChar.getXCoord() + 1,
+            playerChar.getYCoord()).entityLocated()) {
             return false;
         } else {
             playerChar.setXCoord(playerChar.getXCoord() + 1);

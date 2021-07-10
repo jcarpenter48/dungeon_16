@@ -18,7 +18,7 @@ public class TitleTest extends ApplicationTest {
     }
 
     @Test
-    public void testStartEvent(){
+    public void testStartEvent() {
         verifyThat(window("Dungeon 16 Title Screen"), WindowMatchers.isShowing());
         // Start Button
         clickOn(893.0, 547.0);

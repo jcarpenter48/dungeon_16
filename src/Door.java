@@ -1,6 +1,6 @@
 package src;
 
-public class Door extends Entity{
+public class Door extends Entity {
     private String direction;
     public Door(String direction, boolean c) {
         super(c);

@@ -49,15 +49,15 @@ public class MapGenerator {
                 }
             }
         }
-        start = roomMap[1][(int)(Math.random() * (roomWidth - 2)) + 1];
-        end = roomMap[8][(int)(Math.random() * (roomWidth - 2)) + 1];
+        start = roomMap[1][(int) (Math.random() * (roomWidth - 2)) + 1];
+        end = roomMap[8][(int) (Math.random() * (roomWidth - 2)) + 1];
         start.setRoomVariant("room_start");
         end.setRoomVariant("room_exit");
         end.setUp(null);
         end.setDown(null);
         end.setLeft(null);
         end.setRight(null);
-        end.setExit();
+        end.setExit(true);
     }
     public Room getStart() {
         return start;
