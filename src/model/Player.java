@@ -1,6 +1,7 @@
-package src;
+package model;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+
 import java.net.URI;
 import java.io.File;
 
@@ -11,12 +12,14 @@ public class Player {
     private double maxHealth;
     private double currentHealth;
     private double roomCountMultiplier;
-    private ImageView sprite;
+    private Image sprite;
     private Weapon currentWeapon;
+    private int x;
+    private int y;
 
     private File srcPathFile = new File(System.getProperty("user.dir"));
     private File relativePathFile = new File(srcPathFile.getParent() + "");
-    private URI relativePath = relativePathFile.toURI();
+    private URI relativePath = srcPathFile.toURI();
 
     public Player() {
         playerName = "Dave";
@@ -24,8 +27,9 @@ public class Player {
         goldCount = 1;
         maxHealth = 1;
         currentHealth = maxHealth;
-        sprite = new ImageView(relativePath + "/res/players/testsprite.gif");
+        sprite = new Image(relativePath + "/res/players/testsprite.gif");
     }
+
     public Player(String name, String difficultyChoice, String weaponChoice) {
         playerName = name;
 
@@ -51,22 +55,22 @@ public class Player {
         case "Katana":
             currentWeapon = new Weapon(2, 2);
             weaponClass = "DPS";
-            sprite = new ImageView(relativePath + "/res/players/DPS/idle.gif");
+            sprite = new Image(relativePath + "/res/players/DPS/idle.gif");
             break;
         case "Broadsword":
             currentWeapon = new Weapon(1, 3);
             weaponClass = "Tank";
-            sprite = new ImageView(relativePath + "/res/players/Tank/idle.gif");
+            sprite = new Image(relativePath + "/res/players/Tank/idle.gif");
             break;
         case "Magic":
             currentWeapon = new Weapon(3, 1);
             weaponClass = "Mage";
-            sprite = new ImageView(relativePath + "/res/players/Mage/idle.gif");
+            sprite = new Image(relativePath + "/res/players/Mage/idle.gif");
             break;
         default:
             currentWeapon = new Weapon(1, 1);
             weaponClass = "DPS";
-            sprite = new ImageView(relativePath + "/res/players/testsprite.gif");
+            sprite = new Image(relativePath + "/res/players/testsprite.gif");
             break;
         }
         currentHealth = maxHealth;
@@ -128,8 +132,41 @@ public class Player {
     }
     public String returnWeaponClass() {
         return weaponClass;
-    }    
-    public ImageView returnSprite() {
+    }
+    public void setSprite(String animation) {
+        sprite = new Image(relativePath + "/res/players/" + weaponClass + "/"
+            + animation + ".gif");
+    }
+    public Image returnSprite() {
         return sprite;
-    }      
+    }
+    public void setCoords(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setXCoord(int x) {
+        this.x = x;
+    }
+    public void setYCoord(int y) {
+        this.y = y;
+    }    
+    public void moveUp() {
+        y += 5;
+    }
+    public void moveDown() {
+        y -= 5;
+    }
+    public void moveLeft() {
+        x -= 5;
+    }
+    public void moveRight() {
+        x += 5;
+    }
+    public int getXCoord() {
+        return x;
+    }
+    public int getYCoord() {
+        return y;
+    }
 }

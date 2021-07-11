@@ -1,9 +1,8 @@
-package src;
-
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import javafx.stage.Stage;
 import org.testfx.matcher.base.WindowMatchers;
+import view.Main;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
@@ -20,7 +19,7 @@ public class TitleTest extends ApplicationTest {
     }
 
     @Test
-    public void testStartEvent(){
+    public void testStartEvent() {
         verifyThat(window("Dungeon 16 Title Screen"), WindowMatchers.isShowing());
         // Start Button
         clickOn(893.0, 547.0);
