@@ -13,3 +13,9 @@ RoomTest checks to ensure that the player can traverse through rooms when each r
 ###### @Test attach2way() - Verifies room variant designation is correct for a room with 2 connections (ul, has up and left exits)
 ###### @Test exitRoomTestGen() - Verifies that an exit room can be created and designated correctly (no exits from exit room except to outside of dungeon, triggering victory screen)  
 ###### @Test startRoomTestGen() - Verifies that the starting room can be created and designated correctly (4 exits, custom room variant)  
+
+MapGeneratorTest instantiates a MapGenerator and runs through possible map and room generation routines to verify correct placement of rooms in terms of data structure implementation and attributes.
+###### @Test testRoomVariantUDR() verifies that udr room variants are generated correctly at expected part of map
+###### @Test testRoomVariantUDL() verifies that udl room variants are generated correctly at expected part of map
+###### @Test testRoomVariantDLR() verifies that dlr room variants are generated correctly at expected part of map
+###### @Test testRoomVariantULR() verifies that ulr room variants are generated correctly at expected part of map
