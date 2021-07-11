@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.KeyCode;
 import org.testfx.matcher.base.WindowMatchers;
+import view.Main;
 //import org.testfx.robot.Motion;
 
 import static org.testfx.api.FxAssert.verifyThat;
@@ -12,7 +13,7 @@ import static org.testfx.api.FxAssert.verifyThat;
 public class TestOptionsConfigScreen extends ApplicationTest {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        src.Main dungeon16 = new src.Main();
+        Main dungeon16 = new Main();
         dungeon16.start(primaryStage);
         clickOn(893.0, 547.0); //hit start, go to config screen
     }

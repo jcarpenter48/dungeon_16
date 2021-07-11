@@ -5,7 +5,7 @@ import model.MapGenerator;
 
 import static org.junit.Assert.*;
 
-public class MapTest extends ApplicationTest {
+public class MapGeneratorTest extends ApplicationTest {
 
     /*
        Tests by Hardik Goel.

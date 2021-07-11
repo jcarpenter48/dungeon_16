@@ -1,21 +1,24 @@
 import static org.junit.Assert.assertEquals;
+
+import model.Player;
 import org.testfx.framework.junit.ApplicationTest;
 import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.Test;
+import view.Main;
 
 public class PlayerTest extends ApplicationTest {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        src.Main dungeon16 = new src.Main();
+        Main dungeon16 = new Main();
         dungeon16.start(primaryStage);
     }
 
-    private src.Player playerCharacter;
+    private Player playerCharacter;
     @Before
     public void setup() {
-        playerCharacter = new src.Player("Test", "Medium", "Broadsword");
+        playerCharacter = new Player("Test", "Medium", "Broadsword");
     }
     @Test
     public void returnData() {

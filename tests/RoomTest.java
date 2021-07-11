@@ -1,29 +1,33 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import model.Room;
 import org.testfx.framework.junit.ApplicationTest;
 import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.Test;
+import view.Main;
+
 public class RoomTest extends ApplicationTest {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        src.Main dungeon16 = new src.Main();
+        Main dungeon16 = new Main();
         dungeon16.start(primaryStage);
     }
 
-    private src.Room testRoom;
-    private src.Room dummyRoom1 = new src.Room();
-    private src.Room dummyRoom2 = new src.Room();
-    private src.Room dummyRoom3 = new src.Room();
-    private src.Room dummyRoom4 = new src.Room();    
+    private Room testRoom;
+    private Room dummyRoom1 = new Room();
+    private Room dummyRoom2 = new Room();
+    private Room dummyRoom3 = new Room();
+    private Room dummyRoom4 = new Room();
     @Before
     public void setup() {
-        testRoom = new src.Room();
+        testRoom = new Room();
     }
     @Test
     public void attach4way() {
-        testRoom = new src.Room();
+        testRoom = new Room();
         testRoom.setUp(dummyRoom2);
         testRoom.setDown(dummyRoom4);
         testRoom.setLeft(dummyRoom1);
@@ -36,7 +40,7 @@ public class RoomTest extends ApplicationTest {
     }
     @Test
     public void attach3way() {
-        testRoom = new src.Room();
+        testRoom = new Room();
         testRoom.setUp(dummyRoom1);
         testRoom.setDown(dummyRoom2);
         testRoom.setLeft(dummyRoom3); 
@@ -48,7 +52,7 @@ public class RoomTest extends ApplicationTest {
     }
     @Test
     public void attach2way() {
-        testRoom = new src.Room();
+        testRoom = new Room();
         testRoom.setUp(dummyRoom1);
         testRoom.setLeft(dummyRoom2); 
         assertNull(testRoom.retDown());

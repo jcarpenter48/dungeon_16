@@ -1,4 +1,4 @@
-package src;
+package controller;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,6 +24,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 //text color and font
 import javafx.scene.paint.Color;
+import model.MapGenerator;
+import model.Player;
+import model.Room;
 
 public class MapController extends Application {
     private static Stage stage;
@@ -31,7 +34,7 @@ public class MapController extends Application {
     private Room currentRoom = new Room();
     private static Player playerCharacter;
 
-    MapController(Player playerPass) {
+    public MapController(Player playerPass) {
         playerCharacter = playerPass;
     }
 

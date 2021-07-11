@@ -1,7 +1,7 @@
-package src;
+package controller;
 
-import src.Player;
-import src.Room;
+import model.Player;
+import model.Room;
 
 public class GameController {
     private Player playerChar;

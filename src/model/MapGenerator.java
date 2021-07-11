@@ -1,4 +1,6 @@
-package src;
+package model;
+
+// import model.Room;
 
 public class MapGenerator {
     private Room[][] roomMap;
