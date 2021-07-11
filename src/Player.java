@@ -1,7 +1,6 @@
 package src;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import java.net.URI;
 import java.io.File;
 
