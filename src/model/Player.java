@@ -1,7 +1,7 @@
 package src;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import java.net.URI;
 import java.io.File;
 
@@ -29,6 +29,7 @@ public class Player {
         currentHealth = maxHealth;
         sprite = new Image(relativePath + "/res/players/testsprite.gif");
     }
+
     public Player(String name, String difficultyChoice, String weaponChoice) {
         playerName = name;
 
@@ -143,6 +144,7 @@ public class Player {
         this.x = x;
         this.y = y;
     }
+
     public void setXCoord(int x) {
         this.x = x;
     }

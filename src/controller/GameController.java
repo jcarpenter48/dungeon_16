@@ -1,5 +1,8 @@
 package src;
 
+import src.Player;
+import src.Room;
+
 public class GameController {
     private Player playerChar;
     private Room current;

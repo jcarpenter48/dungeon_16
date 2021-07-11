@@ -59,6 +59,7 @@ public class MapGenerator {
         end.setRight(null);
         end.setExit(true);
     }
+
     public Room getStart() {
         return start;
     }

@@ -205,7 +205,7 @@ public class Main extends Application {
                 player1 = new Player(playerNameChoice.getText(), 
                     difficultyChoice.getValue(), weaponChoice.getValue());
                 System.out.println("Saving player data...");
-                src.MapController newDungeon = new src.MapController(player1);
+                MapController newDungeon = new MapController(player1);
                 musicBus.stop(); //halt current music before drawing new room
                 newDungeon.start(stage);
             } catch (Exception eex) {
