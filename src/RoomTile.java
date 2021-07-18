@@ -1,14 +1,12 @@
 public class RoomTile {
     private String entityType;
-    private Entity tileEntity
+    private Entity tileEntity;
     private boolean playerLocated;
     
-    public RoomTile (String entity) {
-        if (entity == null) {
-            entityType = null;
-        } else if (entity == "Chest") {
+    public RoomTile(String entity) {
+        /*else if (entity == "Chest") {
             double rngFactor = Math.random();
-            if rngFactor < 0.95 {
+            if (rngFactor < 0.95) {
             tileEntity = new Chest((int) (Math.random() * 10), null, false);
             } else {
                 int weaponRange = (int) ((Math.random() * 3) + 1);
@@ -16,37 +14,43 @@ public class RoomTile {
                 Weapon temp = new Weapon (weaponRange, weaponDamage);
                 chest = new Chest(Math.random() * 10, temp);
             }
-            entityType == "Chest";
+            entityType = "Chest";
         //} else if (entity == "Hazard") {
         //     //haxzard code
+        }*/
+        if (entity == null) {
+            entityType = null;
         } else if (entity == "DoorUp") {
-	    tileEntity = new Door("Up", true);
+            tileEntity = new Door("Up", true);
             entityType = "Door";
         } else if (entity == "DoorDown") {
-	    tileEntity = new Door("Down", true);
-	    entityType = "Door";
+            tileEntity = new Door("Down", true);
+            entityType = "Door";
         } else if (entity == "DoorRight") {
-	    tileEntity = new Door("Right", true);
-	    entityType = "Door";
+            tileEntity = new Door("Right", true);
+            entityType = "Door";
         } else if (entity == "DoorLeft") {
-	    tileEntity = new Door("Left", true);
-	    entityType = "Door";
-        } else {
-             //entity isEnemyCode
-             break;
+            tileEntity = new Door("Left", true);
+            entityType = "Door";
         }
     }
-    public void clearTile () {
+    public void clearTile() {
         entityType = null;
-        chest = null;
-        enemy = null;
-        playerLocated = nulll;
+        //chest = null;
+        //enemy = null;
+        playerLocated = false;
     }
     public boolean entityLocated() {
-        if (playerLocated == null && entityType == null) {
+        if (!playerLocated && entityType == null) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+    public String getEntityType() {
+        return entityType;
+    }
+    public void setEnemy(Entity e) {
+        tileEntity = entity;
+        entityType = "Enemy";
     }
 }
