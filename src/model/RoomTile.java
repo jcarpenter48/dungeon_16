@@ -23,16 +23,16 @@ public class RoomTile {
         if (entity == null) {
             entityType = null;
         } else if (entity == "DoorUp") {
-            tileEntity = new Door("Up", true);
+            tileEntity = new Door("Up", true, true);
             entityType = "Door";
         } else if (entity == "DoorDown") {
-            tileEntity = new Door("Down", true);
+            tileEntity = new Door("Down", true, true);
             entityType = "Door";
         } else if (entity == "DoorRight") {
-            tileEntity = new Door("Right", true);
+            tileEntity = new Door("Right", true, true);
             entityType = "Door";
         } else if (entity == "DoorLeft") {
-            tileEntity = new Door("Left", true);
+            tileEntity = new Door("Left", true, true);
             entityType = "Door";
         } else {
             //entity isEnemyCode
@@ -53,5 +53,9 @@ public class RoomTile {
     }
     public String getEntityType() {
         return entityType;
+    }
+    public void setEnemy(Entity e) {
+        tileEntity = e;
+        entityType = "Enemy";
     }    
 }

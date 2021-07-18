@@ -11,11 +11,19 @@ public class MapGenerator {
     public MapGenerator() {
         int roomWidth = (int) (Math.random() * 6 + 10);
         int roomHeight = (int) (Math.random() * 6 + 10);
+        int startCoord = (int) (Math.random() * (roomWidth - 2)) + 1;
+        int endCoord = (int) (Math.random() * (roomWidth - 2)) + 1;
         roomMap = (Room[][]) new Room[roomHeight][roomWidth];
         currentRoom = start;
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
-                roomMap[i][j] = new Room();
+                if (i == 1 && j == startCoord) {
+                    roomMap[i][j] = new Room(0);
+                } else if (i == roomHeight - 2 && j == endCoord) {
+                    roomMap[i][j] = new Room(4);
+                } else {
+                    roomMap[i][j] = new Room();
+                }
             }
         }
         //you must set room adjacents in udlr order!
@@ -51,14 +59,10 @@ public class MapGenerator {
                 }
             }
         }
-        start = roomMap[1][(int) (Math.random() * (roomWidth - 2)) + 1];
-        end = roomMap[8][(int) (Math.random() * (roomWidth - 2)) + 1];
+        start = roomMap[1][startCoord];
+        end = roomMap[roomHeight - 2][endCoord];
         start.setRoomVariant("room_start");
         end.setRoomVariant("room_exit");
-        end.setUp(null);
-        end.setDown(null);
-        end.setLeft(null);
-        end.setRight(null);
         end.setExit(true);
     }
 

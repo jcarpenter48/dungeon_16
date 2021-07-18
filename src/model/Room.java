@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 //import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
+//list related
+import java.util.List;
+import java.util.ArrayList;
 
 public class Room {
     private Room left;
@@ -16,6 +19,7 @@ public class Room {
     private Room down;
     private RoomTile[][] tiles;
     private boolean isRoomExit = false;
+    private List<Enemy> enemyList;
     
     private String roomVariant = "room_"; //you must set room adjacents in udlr order!
     
@@ -26,12 +30,24 @@ public class Room {
             + "/res/environments/");
 
     public Room() {
+        enemyList = new ArrayList<>();
         tiles = (RoomTile[][]) new RoomTile[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 tiles[i][j] = new RoomTile(null);
             }
         }
+        int x = (int) (Math.random() * 3 + 1);
+    }
+    public Room(int x) {
+        enemyList = new ArrayList<>();
+        tiles = (RoomTile[][]) new RoomTile[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tiles[i][j] = new RoomTile(null);
+            }
+        }
+        populateRoom(x);
     }
     public RoomTile retRoomTiles(int x, int y) {
         return tiles[x][y];
@@ -103,7 +119,18 @@ public class Room {
         return null; //self explanatory method
     }
 
-    //public void populateRoom () {
-    //    
-    //}
+    public void populateRoom (int x) {
+        for (int i = 0; i < x; i++) {
+            int range = (int) (Math.random() * 3 + 1);
+            int randomizeX = (int) (Math.random() * 7 + 1);
+            int randomizeY = (int) (Math.random() * 7 + 1);
+            while (retRoomTiles(randomizeX, randomizeY).entityLocated() == false) {
+                randomizeX = (int) (Math.random() * 7 + 1);
+                randomizeY = (int) (Math.random() * 7 + 1);
+            }
+            Enemy tempEnemy = new Enemy(range, randomizeX, randomizeY, false);
+            retRoomTiles(randomizeX, randomizeY).setEnemy(tempEnemy);
+            enemyList.add(tempEnemy);
+        }
+    }
 }
