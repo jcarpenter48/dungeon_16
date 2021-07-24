@@ -1,0 +1,4 @@
+Room test for m3 contains 3 seperate Junits tests testing new changes made to the room class
+The first test tests monster creation to ensure the correct amount of enemies are created on room instantiation for the starting ending and random rooms
+The second test checks to see that a Room sucessfully removes monsters from the existing list of monsters when their HP points reach 0
+The third test ensures that doors are correctly locked on room instantiation and unlocked once the room is cleared of monsters.
