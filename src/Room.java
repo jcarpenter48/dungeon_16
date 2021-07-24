@@ -33,6 +33,7 @@ public class Room {
             }
         }
         int x = (int) (Math.random() * 3 + 1);
+        populateRoom(x);
     }
     public Room(int x) {
         enemyList = new ArrayList<>();
