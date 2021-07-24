@@ -156,4 +156,7 @@ public class Room {
             System.out.println("Tile does not contain door");
         }
     }
+    public List<Enemy> retEnemyList() {
+        return enemyList;
+    }
 }
