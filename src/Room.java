@@ -33,7 +33,6 @@ public class Room {
             }
         }
         int x = (int) (Math.random() * 3 + 1);
-        populateRoom(x);
     }
     public Room(int x) {
         enemyList = new ArrayList<>();
@@ -150,14 +149,11 @@ public class Room {
             }
         }
     }
-    public void onRoomEntry() {
+    public void onRoomEntry(int x, int y) {
         try {
-            tiles[player.getX()][player.getY()].getEntity.setLock(false);
+            tiles[x][y].getEntity.setLock(false);
         } except(Exception ee) {
             System.out.println("Tile does not contain door");
         }
-    }
-    public List<Enemy> retEnemyList() {
-        return enemyList;
     }
 }
