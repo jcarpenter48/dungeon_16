@@ -20,6 +20,11 @@ public class Room {
     private RoomTile[][] tiles;
     private boolean isRoomExit = false;
     private List<Enemy> enemyList;
+    //retreat related booleans
+    private boolean retreatUp = false;
+    private boolean retreatDown = false;
+    private boolean retreatLeft = false;
+    private boolean retreatRight = false;
     
     private String roomVariant = "room_"; //you must set room adjacents in udlr order!
     
@@ -138,5 +143,29 @@ public class Room {
             enemyList.add(tempEnemy);
         }
     }
-    //public void populateRoom
+    //retreat related methods
+    public void setRetreatUp() {
+        retreatUp = true;
+    }    
+    public void setRetreatDown() {
+        retreatDown = true;
+    }
+    public void setRetreatLeft() {
+        retreatLeft = true;
+    }
+    public void setRetreatRight() {
+        retreatRight = true;
+    }    
+    public boolean getRetreatUp() {
+        return retreatUp;
+    }    
+    public boolean getRetreatDown() {
+        return retreatDown;
+    }
+    public boolean getRetreatLeft() {
+        return retreatLeft;
+    }
+    public boolean getRetreatRight() {
+        return retreatRight;
+    }
 }

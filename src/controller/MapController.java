@@ -33,6 +33,7 @@ import model.MapGenerator;
 import model.Player;
 import model.Enemy;
 import model.Room;
+import view.Main;
 
 public class MapController extends Application {
     private static Stage stage;
@@ -41,6 +42,10 @@ public class MapController extends Application {
     private static Player playerCharacter;
     private List<Enemy> enemyListMC;
     private List<ImageView> enemyListView;
+    //end game stats
+    private int enemiesKilled = 0;
+    private int successfulHitRolls = 0;
+    private double damageTaken = 0;
 
     public MapController(Player playerPass) {
         playerCharacter = playerPass;
@@ -191,6 +196,7 @@ public class MapController extends Application {
                 if (((int) (Math.random()*(10 - 1))) + 1 < 7) {
                     checkEDamageCollide(playerCharacter); //check for collision and damage enemy
                     combatDisp.setText("Status: Dealt 3 Damage!");
+                    successfulHitRolls++;
                 }
                 //roll to see if enemy strikes
                 if (((int) (Math.random()*(10 - 1))) + 1 > 6) {
@@ -249,6 +255,22 @@ public class MapController extends Application {
     }
 
     private void startEndScreen() throws Exception {
+        //stat calculations
+        damageTaken = playerCharacter.returnMHP() - playerCharacter.returnCHP();
+        HBox information = new HBox(8);
+        VBox spacer = new VBox(10);
+        spacer.getChildren().addAll(information);
+        Label killCount = new Label("Kill Count: "
+            + Integer.toString(enemiesKilled));
+        killCount.setTextFill(Color.web("#FFFFFF"));
+        Label hitCount = new Label("Successful Hit Rolls: "
+            + Integer.toString(successfulHitRolls));
+        hitCount.setTextFill(Color.web("#FFFFFF"));
+        Label damageTakenLbl = new Label("Damage Taken: " + damageTaken);
+        damageTakenLbl.setTextFill(Color.web("#FFFFFF"));
+        information.getChildren().addAll(killCount, hitCount, damageTakenLbl);      
+        //end stat calculations
+        musicBus.stop();
         //victory music
         musicBus = new MediaPlayer(new Media(relativePath
             + "/res/sound/victoryscreen_theme.mp3"));  
@@ -268,14 +290,76 @@ public class MapController extends Application {
         
         Scene endScene = new Scene(endPane, width, height);
         
+        ImageView start = new ImageView(relativePath + "/res/titlescreen/title_start.png");
+        ImageView exit = new ImageView(relativePath + "/res/titlescreen/title_exit.png");
+        endPane.getChildren().addAll(start, exit);        
         // add the background
         endPane.setBackground(new Background(createBackground(relativePath
             + "/res/winscreen.png")));
-        
+        endPane.setBottom(spacer);      
+        //buttons debug
+        start.setOnMouseClicked(e -> {
+            try {
+                musicBus.stop();
+                Main renew = new Main();
+                renew.start(stage);
+            } catch (Exception ex) {
+                System.out.println("Failed to initialize Config Screen");
+            }
+        });
+        exit.setOnMouseClicked(e -> {
+            stage.close();
+        });        
         //set screen to now built config screen
         stage.setTitle("Dungeon 16 Victory Screen");
         stage.setScene(endScene);    
     } 
+    
+    private void startLoseScreen() throws Exception { 
+        //stat calculations
+        damageTaken = playerCharacter.returnMHP() - playerCharacter.returnCHP();
+        HBox information = new HBox(8);
+        VBox spacer = new VBox(10);
+        spacer.getChildren().addAll(information);
+        Label killCount = new Label("Kill Count: "
+            + Integer.toString(enemiesKilled));
+        killCount.setTextFill(Color.web("#FFFFFF"));
+        Label hitCount = new Label("Successful Hit Rolls: "
+            + Integer.toString(successfulHitRolls));
+        hitCount.setTextFill(Color.web("#FFFFFF"));
+        Label damageTakenLbl = new Label("Damage Taken: " + damageTaken);
+        damageTakenLbl.setTextFill(Color.web("#FFFFFF"));
+        information.getChildren().addAll(killCount, hitCount, damageTakenLbl);      
+        //end stat calculations    
+        musicBus.stop();
+        BorderPane endPane = new BorderPane();
+        
+        Scene endScene = new Scene(endPane, width, height);
+        
+        ImageView start = new ImageView(relativePath + "/res/titlescreen/title_start.png");
+        ImageView exit = new ImageView(relativePath + "/res/titlescreen/title_exit.png");
+        endPane.getChildren().addAll(start, exit);
+        // add the background
+        endPane.setBackground(new Background(createBackground(relativePath
+            + "/res/losescreen.png")));
+        endPane.setBottom(spacer);       
+        //buttons debug
+        start.setOnMouseClicked(e -> {
+            try {
+                musicBus.stop();
+                Main renew = new Main();
+                renew.start(stage);
+            } catch (Exception ex) {
+                System.out.println("Failed to initialize Config Screen");
+            }
+        });
+        exit.setOnMouseClicked(e -> {
+            stage.close();
+        });
+        //set screen to now built lose screen
+        stage.setTitle("Dungeon 16 Lose Screen");
+        stage.setScene(endScene);    
+    }     
 
     private BackgroundImage createBackground(String backgroundResource) {
         try {
@@ -324,7 +408,7 @@ public class MapController extends Application {
             PauseTransition p = new PauseTransition(Duration.millis(1400));
             p.setOnFinished(e -> {
                 try {
-                    startEndScreen();
+                    startLoseScreen();
                 } catch (Exception eex) {
                     System.out.println("Failed to initialize lose screen");
                     System.out.println("Exception: " + eex);
@@ -341,6 +425,8 @@ public class MapController extends Application {
             if (element.returnHP() <= 0) {
                 element.setSprite("death");
                 enemyListMC.remove(element);
+                //now update our player's enemy kill count
+                enemiesKilled++;
             }
         } //if enemy health is 0 or less, change sprite to death    
     }

@@ -31,13 +31,14 @@ public class GameController {
         System.out.println(current.retEnemyList().toString());
         if (playerChar.getYCoord() < -30 && (playerChar.getXCoord() > 285
             && playerChar.getXCoord() < 320)) {
-            if (!current.retEnemyList().isEmpty()) {
+            if (!current.retEnemyList().isEmpty() && !current.getRetreatUp()) {
                 System.out.println("You may not leave until the monsters are dead...");
                 playerChar.setCoords(305, 160);
                 return current;
             } else if ((current.retUp()) != null) {
                 current = current.retUp();
                 playerChar.setCoords(295, 380);
+                current.setRetreatDown();
             }
         }
         return current;
@@ -46,13 +47,14 @@ public class GameController {
         System.out.println(current.retEnemyList().toString());
         if (playerChar.getYCoord() > 400 && (playerChar.getXCoord() > 270
             && playerChar.getXCoord() < 345)) {
-            if (!current.retEnemyList().isEmpty()) {
+            if (!current.retEnemyList().isEmpty() && !current.getRetreatDown()) {
                 System.out.println("You may not leave until the monsters are dead...");
                 playerChar.setCoords(305, 160);
                 return current;
             } else if ((current.retDown()) != null) {
                 current = current.retDown();
                 playerChar.setCoords(295, -20);
+                current.setRetreatUp();
             }
         }
         return current;
@@ -61,13 +63,14 @@ public class GameController {
         System.out.println(current.retEnemyList().toString());
         if (playerChar.getXCoord() < -25 && (playerChar.getYCoord() > 115 
             && playerChar.getYCoord() < 175)) {
-            if (!current.retEnemyList().isEmpty()) {
+            if (!current.retEnemyList().isEmpty() && !current.getRetreatLeft()) {
                 System.out.println("You may not leave until the monsters are dead...");
                 playerChar.setCoords(305, 160);
                 return current;
             } else if ((current.retLeft()) != null) {
                 current = current.retLeft();
                 playerChar.setCoords(610, 160);
+                current.setRetreatRight();
             }
         }
         return current;
@@ -76,13 +79,14 @@ public class GameController {
         System.out.println(current.retEnemyList().toString());
         if (playerChar.getXCoord() > 630 && (playerChar.getYCoord() > 115
             && playerChar.getYCoord() < 175)) {
-            if (!current.retEnemyList().isEmpty()) {
+            if (!current.retEnemyList().isEmpty() && !current.getRetreatRight()) {
                 System.out.println("You may not leave until the monsters are dead...");
                 playerChar.setCoords(305, 160);
                 return current;
             } else if ((current.retRight()) != null) {
                 current = current.retRight();
                 playerChar.setCoords(-20, 160);
+                current.setRetreatLeft();
             }
         }
         return current;
