@@ -128,4 +128,32 @@ public class Room {
             enemyList.add(tempEnemy);
         }
     }
+
+    public void destroyMonster() {
+        for (int i = 0; i < enemyList.size(); i++) {
+            if (enemyList.get(i).returnHp() <= 0) {
+                enemyList.remove(i);
+                i--;
+            }
+        }
+    }
+    public void roomClear() {
+        if (enemyList.size() == 0) {
+            try {
+                tiles[0][5].getEntity().setLock(false);
+                tiles[8][5].getEntity().setLock(false);
+                tiles[5][0].getEntity().setLock(false);
+                tiles[5][8].getEntity().setLock(false);
+            } catch (Exception e) {
+                System.out.println("Door not on tile");
+            }
+        }
+    }
+    public void onRoomEntry() {
+        try {
+            tiles[player.getX()][player.getY()].getEntity.setLock(false);
+        } except(Exception ee) {
+            System.out.println("Tile does not contain door");
+        }
+    }
 }
