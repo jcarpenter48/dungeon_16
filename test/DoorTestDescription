@@ -1,0 +1,2 @@
+DoorTest contains 1 Junits test to ensure that a door can be locked and unlocked correctly
+This is important to ensure that the door state can be modified in the room file to correctly allow or disallow player entry and exit
