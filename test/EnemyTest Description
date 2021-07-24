@@ -1,0 +1,5 @@
+EnemyTest contians 2 seperate JunitsTests to test the Enemy class used in the Dungeon game
+The first Junits test ensures that enemies can sucessfully take damage and have their HP lowered. This test allows for the room class to delete
+enemies once their hp sucessfully reaches 0 or lower
+The second Junits test tests the damage dealt by enemies ensuring that damage is correctly returned based on value instantiated by the constructor
+for calculating player damage
