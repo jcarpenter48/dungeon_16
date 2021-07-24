@@ -22,7 +22,7 @@ public class MapGenerator {
                 } else if (i == roomHeight - 2 && j == endCoord) {
                     roomMap[i][j] = new Room(4);
                 } else {
-                    roomMap[i][j] = new Room();
+                    roomMap[i][j] = new Room(2);
                 }
             }
         }

@@ -14,6 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
+import javafx.animation.PauseTransition;
+import java.util.concurrent.atomic.AtomicBoolean;
+//list related
+import java.util.List;
+import java.util.ArrayList;
 //input fields
 import javafx.scene.control.Label;
 //import javafx.scene.input.KeyEvent;
@@ -26,6 +31,7 @@ import javafx.util.Duration;
 import javafx.scene.paint.Color;
 import model.MapGenerator;
 import model.Player;
+import model.Enemy;
 import model.Room;
 
 public class MapController extends Application {
@@ -33,6 +39,8 @@ public class MapController extends Application {
     private MapGenerator dungeonMap = new MapGenerator();
     private Room currentRoom = new Room();
     private static Player playerCharacter;
+    private List<Enemy> enemyListMC;
+    private List<ImageView> enemyListView;
 
     public MapController(Player playerPass) {
         playerCharacter = playerPass;
@@ -87,41 +95,54 @@ public class MapController extends Application {
         Label goldCount = new Label("Gold Count: "
             + Integer.toString(playerCharacter.returnGold()));
         goldCount.setTextFill(Color.web("#FFFFFF"));
-        information.getChildren().addAll(goldCount);
+        Label healthDisp = new Label("Health: "
+            + Double.toString(playerCharacter.returnCHP()));
+        healthDisp.setTextFill(Color.web("#FFFFFF"));
+        Label combatDisp = new Label("Status: Nothing to report");
+        combatDisp.setTextFill(Color.web("#FFFFFF"));
+        information.getChildren().addAll(goldCount, healthDisp, combatDisp);
         root.setBottom(spacer);
+        
         //event handler for game input
+        AtomicBoolean isCombat = new AtomicBoolean(false);
+        AtomicBoolean isPMoving = new AtomicBoolean(false);
         roomScene.setOnKeyPressed(e -> {
-            playerCharacter.setSprite("Move");
-            playerCharacterModel.setImage(playerCharacter.returnSprite());
+            //checkPDamageCollide(playerCharacter); //check if player should be damaged
+            if (!isPMoving.get()) {
+                playerCharacter.setSprite("Move");
+                playerCharacterModel.setImage(playerCharacter.returnSprite());
+                isPMoving.set(true);
+            }
             switch (e.getCode()) {
             case W:
-                //System.out.println("W key was pressed");
+                combatDisp.setText("Status: On the move...");
                 playerCharacterModel.setY(playerCharacterModel.getY() - 5);
-                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
-                    + playerCharacterModel.getY());
+                //System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                //    + playerCharacterModel.getY());
                 playerCharacter.setXCoord((int) playerCharacterModel.getX());
                 playerCharacter.setYCoord((int) playerCharacterModel.getY());
                 //check if we move to next room or if we hit the game exit
                 if (GameController.checkExit(playerCharacter, currentRoom)) {
-                    try {
-                        startEndScreen();
-                    } catch (Exception eex) {
-                        System.out.println("Failed to initialize win screen");
-                        System.out.println("Exception: " + eex);
+                    if (enemyListMC.isEmpty()) {
+                        try {
+                            startEndScreen();
+                        } catch (Exception eex) {
+                            System.out.println("Failed to initialize win screen");
+                            System.out.println("Exception: " + eex);
+                        }
+                        break;
                     }
-                    break;
                 }
                 currentRoom = GameController.checkNextRoomUp(playerCharacter, currentRoom);
                 root.setBackground(new Background(currentRoom.createBackground()));
                 playerCharacterModel.setX(playerCharacter.getXCoord());
                 playerCharacterModel.setY(playerCharacter.getYCoord());
-                System.out.println(currentRoom.toString());
                 break;
             case S:
-                //System.out.println("S key was pressed"); 
+                combatDisp.setText("Status: On the move..."); 
                 playerCharacterModel.setY(playerCharacterModel.getY() + 5);
-                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
-                    + playerCharacterModel.getY());
+                //System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                //    + playerCharacterModel.getY());
                 playerCharacter.setXCoord((int) playerCharacterModel.getX());
                 playerCharacter.setYCoord((int) playerCharacterModel.getY());
                 //check if we move to next room
@@ -129,13 +150,12 @@ public class MapController extends Application {
                 root.setBackground(new Background(currentRoom.createBackground()));
                 playerCharacterModel.setX(playerCharacter.getXCoord());
                 playerCharacterModel.setY(playerCharacter.getYCoord()); 
-                System.out.println(currentRoom.toString());
                 break;
             case A:
-                //System.out.println("A key was pressed");
+                combatDisp.setText("Status: On the move...");
                 playerCharacterModel.setX(playerCharacterModel.getX() - 5);
-                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
-                    + playerCharacterModel.getY());
+                //System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                //    + playerCharacterModel.getY());
                 playerCharacter.setXCoord((int) playerCharacterModel.getX());
                 playerCharacter.setYCoord((int) playerCharacterModel.getY());
                 //check if we move to next room
@@ -143,13 +163,12 @@ public class MapController extends Application {
                 root.setBackground(new Background(currentRoom.createBackground()));
                 playerCharacterModel.setX(playerCharacter.getXCoord());
                 playerCharacterModel.setY(playerCharacter.getYCoord());
-                System.out.println(currentRoom.toString());
                 break;
             case D:
-                //System.out.println("D key was pressed");
+                combatDisp.setText("Status: On the move...");
                 playerCharacterModel.setX(playerCharacterModel.getX() + 5);
-                System.out.println("X: " + playerCharacterModel.getX() + " Y: "
-                    + playerCharacterModel.getY());
+                //System.out.println("X: " + playerCharacterModel.getX() + " Y: "
+                //    + playerCharacterModel.getY());
                 playerCharacter.setXCoord((int) playerCharacterModel.getX());
                 playerCharacter.setYCoord((int) playerCharacterModel.getY());
                 //check if we move to next room
@@ -157,16 +176,71 @@ public class MapController extends Application {
                 root.setBackground(new Background(currentRoom.createBackground()));
                 playerCharacterModel.setX(playerCharacter.getXCoord());
                 playerCharacterModel.setY(playerCharacter.getYCoord()); 
-                System.out.println(currentRoom.toString());
                 break;
+            case E:
+                //attack case
+                //attack sprite
+                if (!isCombat.get()) {
+                    playerCharacter.setSprite("attack");
+                    playerCharacterModel.setImage(playerCharacter.returnSprite());
+                    updateEnemySprites("attack", playerCharacter);
+                    isCombat.set(true);               
+                }
+                combatDisp.setText("Status: Attacking...");
+                //roll to see if player strikes
+                if (((int) (Math.random()*(10 - 1))) + 1 < 7) {
+                    checkEDamageCollide(playerCharacter); //check for collision and damage enemy
+                    combatDisp.setText("Status: Dealt 3 Damage!");
+                }
+                //roll to see if enemy strikes
+                if (((int) (Math.random()*(10 - 1))) + 1 > 6) {
+                    checkPDamageCollide(playerCharacter); //check if player should be damaged
+                    combatDisp.setText("Status: Enemy Dealt Damage!");
+                }
+                checkEnemyDead();
             default:
                 break;
             }
+            try {
+                clearDisplayEnemies(root);
+            } catch (Exception npe) {
+                System.out.println("No imageviews to clear");
+            } //clear our enemies if we can
+            spawnDisplayEnemies(root); //spawn our enemies
+            //check for collisions
+            
+            //update health
+            healthDisp.setText("Health: "
+                + Double.toString(playerCharacter.returnCHP()));        
+            checkIfDead(playerCharacterModel);
         });
         roomScene.setOnKeyReleased(e -> {
-            System.out.println("Keys released");
-            playerCharacter.setSprite("Idle");
-            playerCharacterModel.setImage(playerCharacter.returnSprite());            
+            //checkPDamageCollide(playerCharacter); //check if player should be damaged
+            //System.out.println("Keys released");
+            if (isPMoving.get()) {
+                if (isCombat.get()) {
+                    PauseTransition p = new PauseTransition(Duration.millis(1400));
+                    p.setOnFinished(wait -> {
+                        isCombat.set(false);
+                    });
+                    p.play();
+                }
+                playerCharacter.setSprite("Idle");
+                playerCharacterModel.setImage(playerCharacter.returnSprite()); 
+                updateEnemySprites("Idle", playerCharacter);
+                isPMoving.set(false);
+            }
+            //clear our enemies and then spawn them to make sure they're currentRoom
+            try {
+                clearDisplayEnemies(root);
+            } catch (Exception npe) {
+                System.out.println("No imageviews to clear");
+            } //clear our enemies if we can
+            spawnDisplayEnemies(root); //spawn our enemies
+            //update health
+            healthDisp.setText("Health: "
+                + Double.toString(playerCharacter.returnCHP()));
+            checkIfDead(playerCharacterModel);
         });
         stage.setScene(roomScene);
         stage.setTitle("Dungeon 16");
@@ -213,5 +287,101 @@ public class MapController extends Application {
             System.out.println("Background Image not Found or Invalid");
         }
         return null; //self explanatory method
+    }
+    
+    private void clearDisplayEnemies(BorderPane root) {
+        if (enemyListView == null || enemyListView.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < enemyListView.size(); i++) {
+            ImageView temp = enemyListView.get(i);
+            root.getChildren().remove(temp);
+        } //clear screen of enemies from previous room
+    }
+    private void spawnDisplayEnemies(BorderPane root) {
+        //enemies
+        enemyListMC = currentRoom.retEnemyList();
+        if (enemyListMC == null || enemyListMC.isEmpty()) {
+            return;
+        }
+        enemyListView = new ArrayList<>();
+        for (Enemy element : enemyListMC) {
+            enemyListView.add(new ImageView(element.returnSprite()));
+        } //add every enemy in a room's enemy list to be drawn
+        for (int i = 0; i < enemyListView.size(); i++) {
+            ImageView temp = enemyListView.get(i);
+            root.getChildren().add(temp);
+            temp.setX(enemyListMC.get(i).retX());
+            temp.setY(enemyListMC.get(i).retY());
+        }
+        //end enemies spawn
+    }
+    private void checkIfDead(ImageView playerCharacterModel) {
+        //if dead, lose game
+        if (playerCharacter.returnCHP() <= 0) {
+            playerCharacter.setSprite("death");
+            playerCharacterModel.setImage(playerCharacter.returnSprite());
+            PauseTransition p = new PauseTransition(Duration.millis(1400));
+            p.setOnFinished(e -> {
+                try {
+                    startEndScreen();
+                } catch (Exception eex) {
+                    System.out.println("Failed to initialize lose screen");
+                    System.out.println("Exception: " + eex);
+                }
+            });
+            p.play();
+        }        
+    }
+    private void checkEnemyDead() {
+        if (enemyListMC == null || enemyListMC.isEmpty()) {
+            return;
+        }
+        for (Enemy element : enemyListMC) {
+            if (element.returnHP() <= 0) {
+                element.setSprite("death");
+                enemyListMC.remove(element);
+            }
+        } //if enemy health is 0 or less, change sprite to death    
+    }
+    private void updateEnemySprites(String animation, Player pChar) {
+        if (enemyListMC == null || enemyListMC.isEmpty()) {
+            return;
+        }
+        for (Enemy element : enemyListMC) {
+            if (checkCollide(pChar, element)) {
+                element.setSprite("attack");
+            }
+        }
+    }
+    
+    private boolean checkCollide(Player pChar, Enemy monster) {
+        boolean check = pChar.getBoundary().intersects(monster.getBoundary());
+        System.out.println(""+check);
+        return check;
+    }
+    private void checkPDamageCollide(Player pChar) {
+        if (enemyListMC != null) {
+            if (enemyListMC.isEmpty()) {
+                return;
+            }
+            for (Enemy element : enemyListMC) {
+                if (checkCollide(pChar, element)) {
+                    pChar.takeDamage(element.returnDamage());
+                }
+            } //check if any enemies are colliding with player            
+        }
+    }
+    private void checkEDamageCollide(Player pChar) {
+        if (enemyListMC != null) {
+            if (enemyListMC.isEmpty()) {
+                return;
+            }
+            for (Enemy element : enemyListMC) {
+                if (checkCollide(pChar, element)) {
+                    element.takeDamage(3);
+                }
+            } //check if any enemies are colliding with player            
+        }
     }
 }

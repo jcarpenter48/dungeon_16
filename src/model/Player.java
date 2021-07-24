@@ -1,6 +1,9 @@
 package model;
 
 import javafx.scene.image.Image;
+//collision related
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.net.URI;
 import java.io.File;
@@ -111,6 +114,9 @@ public class Player {
         }
     }
 
+    public Rectangle2D getBoundary() {
+        return new Rectangle2D(this.x, this.y, 50, 50);
+    }
     /*public boolean buyItem(int itemCost, Item item) {
         if (itemCost > goldCount) {
             return false;

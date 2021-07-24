@@ -49,9 +49,14 @@ public class Room {
         }
         populateRoom(x);
     }
+    //return methods key to getting data on room layout and enemies
+    public List retEnemyList() {
+        return enemyList;
+    }
     public RoomTile retRoomTiles(int x, int y) {
         return tiles[x][y];
     }
+    //regular setters and getters below
     public void setRoomVariant(String newVariant) {
         this.roomVariant = newVariant;
     }
@@ -107,7 +112,7 @@ public class Room {
     }
     
     public BackgroundImage createBackground() {
-        System.out.println("Background Name: " + roomBackground + roomVariant + ".png");
+        //System.out.println("Background Name: " + roomBackground + roomVariant + ".png");
         try {
             Image backgroundImage = new Image(roomBackground + roomVariant + ".png");
             BackgroundImage fullBackground = new BackgroundImage(backgroundImage,
@@ -121,7 +126,7 @@ public class Room {
 
     public void populateRoom (int x) {
         for (int i = 0; i < x; i++) {
-            int range = (int) (Math.random() * 3 + 1);
+            int range = (int) (Math.random() * 4 + 1);
             int randomizeX = (int) (Math.random() * 7 + 1);
             int randomizeY = (int) (Math.random() * 7 + 1);
             while (retRoomTiles(randomizeX, randomizeY).entityLocated() == false) {
@@ -133,4 +138,5 @@ public class Room {
             enemyList.add(tempEnemy);
         }
     }
+    //public void populateRoom
 }
