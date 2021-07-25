@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import view.Main;
 import model.Room;
+import model.Door;
+import model.Enemy;
 
 public class RoomTest extends ApplicationTest {
 
@@ -103,4 +105,41 @@ public class RoomTest extends ApplicationTest {
         assertEquals(false, testRoom.isExit());
         assertEquals("room_start", testRoom.retRoomVariant());
     }
+    //M4 Tests
+    @Test
+    public void testMonsterCreation() {
+        roomTester = new Room(3);
+        assertEquals(3, roomTester.retEnemyList().size());
+        roomTester = new Room(6);
+        assertEquals(6, roomTester.retEnemyList().size());
+        roomTester = new Room(0);
+        assertEquals(0, roomTester.retEnemyList().size());
+    }
+    @Test
+    public void testMonsterDefeat() {
+        roomTester = new Room(3);
+        ((Enemy)roomTester.retEnemyList().get(0)).takeDamage
+            (((Enemy)roomTester.retEnemyList().get(0)).returnHP());
+        roomTester.destroyMonster();
+        assertEquals(2, roomTester.retEnemyList().size());
+        ((Enemy)roomTester.retEnemyList().get(0)).takeDamage
+            (((Enemy)roomTester.retEnemyList().get(0)).returnHP());
+        roomTester.destroyMonster();
+        assertEquals(1, roomTester.retEnemyList().size());
+        ((Enemy)roomTester.retEnemyList().get(0)).takeDamage
+            (((Enemy)roomTester.retEnemyList().get(0)).returnHP());
+        roomTester.destroyMonster();
+        assertEquals(0, roomTester.retEnemyList().size());
+    }
+    @Test
+    public void testDoorUnlock() {
+        roomTester.setUp(new Room());
+        roomTester.setDown(new Room());
+        roomTester.setLeft(new Room());
+        roomTester.setRight(new Room());
+        roomTester.retEnemyList().clear();
+        assertEquals(true, ((Door)roomTester.retRoomTiles(5, 0).getEntity()).returnLocked());
+        boolean temp = ((Door)roomTester.retRoomTiles(0, 5).getEntity()).returnLocked();
+        assertEquals(true, temp);
+    }    
 }

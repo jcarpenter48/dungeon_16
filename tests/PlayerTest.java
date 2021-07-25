@@ -50,4 +50,17 @@ public class PlayerTest extends ApplicationTest {
         playerCharacter.moveRight();
         assertEquals(10, playerCharacter.getXCoord(), 0);
     }    
+    @Test //M4 Test Case
+    public void returnData3() {
+        playerCharacter = new Player("TestPlayer", "Easy", "Katana");
+        playerCharacter.setCoords(5, 5);
+        assertEquals(100.0, playerCharacter.returnCHP(), 0);
+        assertEquals(100, playerCharacter.returnMHP(), 0);
+        assertEquals("DPS", playerCharacter.returnWeaponClass());
+        assertEquals(2, playerCharacter.dealDamage(), 0.01);
+        assertEquals(5, playerCharacter.getXCoord(), 0);
+        assertEquals(5, playerCharacter.getYCoord(), 0);
+        playerCharacter.moveRight();
+        assertEquals(10, playerCharacter.getXCoord(), 0);
+    }    
 }
