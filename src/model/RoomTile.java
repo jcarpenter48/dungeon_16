@@ -54,6 +54,9 @@ public class RoomTile {
     public String getEntityType() {
         return entityType;
     }
+    public Entity getEntity() {
+        return tileEntity;
+    }
     public void setEnemy(Entity e) {
         tileEntity = e;
         entityType = "Enemy";

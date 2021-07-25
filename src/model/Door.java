@@ -14,4 +14,7 @@ public class Door extends Entity{
     public boolean returnLocked() {
         return locked;
     }
+    public void setLock(boolean isLocked) {
+        this.locked = isLocked;
+    }
 }

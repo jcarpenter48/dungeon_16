@@ -143,6 +143,14 @@ public class Room {
             enemyList.add(tempEnemy);
         }
     }
+    public void destroyMonster() {
+        for (int i = 0; i < enemyList.size(); i++) {
+            if (enemyList.get(i).returnHP() <= 0) {
+                enemyList.remove(i);
+                i--;
+            }
+        }
+    }    
     //retreat related methods
     public void setRetreatUp() {
         retreatUp = true;

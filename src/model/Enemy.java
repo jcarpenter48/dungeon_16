@@ -82,8 +82,8 @@ public class Enemy extends Entity {
     }
 
     public int attack(int px, int py) {
-        int xDist = px - x;
-        int yDist = py - y;
+        int xDist = px - this.tileX;
+        int yDist = py - this.tileY;
         int sqrtDist = (int) (Math.sqrt(Math.pow((double) xDist, 2) + Math.pow((double) yDist, 2)));
         if (sqrtDist <= range) {
             return damageOutput;
