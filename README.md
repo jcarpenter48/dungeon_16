@@ -22,8 +22,7 @@ Dungeon 16 is a dungeon crawler game using DND mechanics, built using JavaFX ove
 
 	Stats are displayed at the bottom left of the screen (Gold Count, Health, Status of player).
 
-	Upon either the player reaching the exit room of the dungeon, the game ends, and a corresponding victory screen is shown with final
-  statistics and the option to play again.
+	Upon either the player reaching the exit room of the dungeon, the game ends, and a corresponding victory screen is shown with final statistics and the option to play again.
 	If the player dies during their run, a lose screen is displayed, with similar options.
 
 	Upon winning or losing, the player may press START to play again or EXIT to close the game.
